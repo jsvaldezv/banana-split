@@ -10,12 +10,21 @@ MidiSynthAudioProcessor::MidiSynthAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), apvt(*this, nullptr, "PARAMETERS", createAPVT())
 #endif
 {
 }
 
 MidiSynthAudioProcessor::~MidiSynthAudioProcessor(){}
+
+juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::createAPVT()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout params;
+    
+    params.add(std::make_unique<juce::AudioParameterFloat>("FreqOne", "Freq One", 20.0f, 20000.0f, 440.0f));
+    
+    return params;
+}
 
 const juce::String MidiSynthAudioProcessor::getName() const
 {
@@ -73,7 +82,10 @@ const juce::String MidiSynthAudioProcessor::getProgramName ([[maybe_unused]] int
 
 void MidiSynthAudioProcessor::changeProgramName ([[maybe_unused]] int index, [[maybe_unused]] const juce::String& newName){}
 
-void MidiSynthAudioProcessor::prepareToPlay ([[maybe_unused]] double sampleRate, [[maybe_unused]] int samplesPerBlock){}
+void MidiSynthAudioProcessor::prepareToPlay ([[maybe_unused]] double sampleRate, [[maybe_unused]] int samplesPerBlock)
+{
+    oscOne.prepare(sampleRate);
+}
 
 void MidiSynthAudioProcessor::releaseResources(){}
 
@@ -106,8 +118,8 @@ void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-    
-    
+    oscOne.setFreq(apvt.getRawParameterValue("FreqOne")->load());
+    oscOne.process(buffer);
 }
 
 bool MidiSynthAudioProcessor::hasEditor() const

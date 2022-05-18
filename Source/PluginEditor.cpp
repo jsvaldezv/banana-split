@@ -15,7 +15,7 @@ void MidiSynthAudioProcessorEditor::paint (juce::Graphics& g)
 
     g.setColour (juce::Colours::white);
     g.setFont (15.0f);
-    g.drawFittedText ("Midi Synth!", getLocalBounds(), juce::Justification::centred, 1);
+    g.drawFittedText ("¡Banana Split!", getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void MidiSynthAudioProcessorEditor::resized(){}
