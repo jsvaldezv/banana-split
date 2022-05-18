@@ -1,6 +1,7 @@
 #pragma once
 #include <JuceHeader.h>
 #include "Oscillator.h"
+#include "Helpers_DSP.h"
 
 class MidiSynthAudioProcessor  : public juce::AudioProcessor
 {

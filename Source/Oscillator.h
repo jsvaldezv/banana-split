@@ -10,6 +10,7 @@
 
 #pragma once
 #include <JuceHeader.h>
+#include "Helpers_DSP.h"
 
 class Oscillator
 {
@@ -22,11 +23,15 @@ public:
     
     void process(juce::AudioBuffer<float> inBuffer);
     
+    float getOscValue(OSC_TYPE inOscType, int inChannel);
+    
     void calculateIncrement();
     
     void setFreq(float inFreq);
     
     void setDepth(float inDepth);
+    
+    void setOscType(int inType);
     
 private:
     
@@ -37,6 +42,7 @@ private:
     //***************************************** PARAMETERS ****************************************//
     float frequency {440.0f};
     float depth {1.0f};
+    OSC_TYPE type;
     
     //******************************************** DATA *******************************************//
     float phase[2] {0.0f};
