@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="uKf8N1" name="MidiSynth" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="zM2Pts" name="MidiSynth">
     <GROUP id="{2B5E0596-EB75-596E-31AA-682C747968F6}" name="Source">
       <FILE id="W3Zi16" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -35,6 +35,26 @@
         <MODULEPATH id="juce_gui_extra" path="../../Documents/Programming/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
+    <VS2019 targetFolder="Builds/VisualStudio2019">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="/Users/jsvaldezv/Documents/Programming/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2019>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
