@@ -23,7 +23,6 @@ juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::cre
 {
     juce::AudioProcessorValueTreeState::ParameterLayout params;
     
-    params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFreq", "OscOneFreq", 20.0f, 20000.0f, 440.0f));
     params.add(std::make_unique<juce::AudioParameterChoice>("OscOneType", "OscOneType", juce::StringArray("Sin",
                                                                                                           "Square",
                                                                                                           "Triangle",
@@ -90,10 +89,15 @@ void MidiSynthAudioProcessor::changeProgramName ([[maybe_unused]] int index, [[m
 
 void MidiSynthAudioProcessor::prepareToPlay ([[maybe_unused]] double sampleRate, [[maybe_unused]] int samplesPerBlock)
 {
-    oscOne.prepare(sampleRate);
-    oscOne.setOscType(OSC_TYPE::SIN);
-    
     synth.setCurrentPlaybackSampleRate(sampleRate);
+    
+    for(int i = 0; i < synth.getNumVoices(); i++)
+    {
+        if(auto voice = dynamic_cast<SynthVoice*>(synth.getVoice(i)))
+        {
+            voice->prepare(sampleRate, samplesPerBlock);
+        }
+    }
 }
 
 void MidiSynthAudioProcessor::releaseResources(){}
@@ -126,16 +130,12 @@ void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
-
-    //oscOne.setOscType(apvt.getRawParameterValue("OscOneType")->load());
-    //oscOne.setFreq(apvt.getRawParameterValue("OscOneFreq")->load());
-    //oscOne.process(buffer);
     
     for(int i = 0; i < synth.getNumVoices(); i++)
     {
         if(auto voice = dynamic_cast<juce::SynthesiserVoice*>(synth.getVoice(i)))
         {
-            
+            // PARAMETERS
         }
     }
     

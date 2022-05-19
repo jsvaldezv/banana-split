@@ -11,6 +11,7 @@
 #pragma once
 #include <JuceHeader.h>
 #include "SynthSound.h"
+#include "Oscillator.h"
 
 class SynthVoice : public juce::SynthesiserVoice
 {
@@ -30,10 +31,17 @@ public:
     
     void pitchWheelMoved (int newPitchWheelValue) override;
     
+    void prepare(double inSampleRate, int inSamplesPerBlock);
+    
     void renderNextBlock (juce::AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override;
     
 private:
     
+    Oscillator oscOne;
     
+    bool isPrepared {false};
+    
+    juce::ADSR adsr;
+    juce::ADSR::Parameters adsrParams;
     
 };
