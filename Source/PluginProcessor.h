@@ -2,6 +2,8 @@
 #include <JuceHeader.h>
 #include "Oscillator.h"
 #include "Helpers_DSP.h"
+#include "SynthSound.h"
+#include "SynthVoice.h"
 
 class MidiSynthAudioProcessor  : public juce::AudioProcessor
 {
@@ -37,6 +39,7 @@ public:
 private:
     
     Oscillator oscOne;
+    juce::Synthesiser synth;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessor)
 };

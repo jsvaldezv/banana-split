@@ -6,6 +6,9 @@
     <GROUP id="{90215668-B6B9-C063-B3C0-8E4AE75C4299}" name="DSP">
       <FILE id="kbrU0y" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
       <FILE id="dc3d8a" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
+      <FILE id="onzz7d" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
+      <FILE id="p6gAk7" name="SynthVoice.cpp" compile="1" resource="0" file="Source/SynthVoice.cpp"/>
+      <FILE id="xKaTO8" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
     </GROUP>
     <GROUP id="{2B5E0596-EB75-596E-31AA-682C747968F6}" name="Source">
       <FILE id="W3Zi16" name="PluginProcessor.cpp" compile="1" resource="0"

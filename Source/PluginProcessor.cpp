@@ -13,6 +13,8 @@ MidiSynthAudioProcessor::MidiSynthAudioProcessor()
                        ), apvt(*this, nullptr, "PARAMETERS", createAPVT())
 #endif
 {
+    synth.addSound(new SynthSound());
+    synth.addVoice(new SynthVoice());
 }
 
 MidiSynthAudioProcessor::~MidiSynthAudioProcessor(){}
@@ -90,6 +92,8 @@ void MidiSynthAudioProcessor::prepareToPlay ([[maybe_unused]] double sampleRate,
 {
     oscOne.prepare(sampleRate);
     oscOne.setOscType(OSC_TYPE::SIN);
+    
+    synth.setCurrentPlaybackSampleRate(sampleRate);
 }
 
 void MidiSynthAudioProcessor::releaseResources(){}
@@ -114,7 +118,7 @@ bool MidiSynthAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts
 #endif
 
 void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
-                                            [[maybe_unused]] juce::MidiBuffer& midiMessages)
+                                            juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -123,9 +127,19 @@ void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-    oscOne.setOscType(apvt.getRawParameterValue("OscOneType")->load());
-    oscOne.setFreq(apvt.getRawParameterValue("OscOneFreq")->load());
-    oscOne.process(buffer);
+    //oscOne.setOscType(apvt.getRawParameterValue("OscOneType")->load());
+    //oscOne.setFreq(apvt.getRawParameterValue("OscOneFreq")->load());
+    //oscOne.process(buffer);
+    
+    for(int i = 0; i < synth.getNumVoices(); i++)
+    {
+        if(auto voice = dynamic_cast<juce::SynthesiserVoice*>(synth.getVoice(i)))
+        {
+            
+        }
+    }
+    
+    synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
 
 bool MidiSynthAudioProcessor::hasEditor() const
