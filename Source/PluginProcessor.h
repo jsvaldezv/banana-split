@@ -1,5 +1,9 @@
 #pragma once
 #include <JuceHeader.h>
+#include "Oscillator.h"
+#include "Helpers_DSP.h"
+#include "SynthSound.h"
+#include "SynthVoice.h"
 
 class MidiSynthAudioProcessor  : public juce::AudioProcessor
 {
@@ -28,10 +32,13 @@ public:
     void changeProgramName (int index, const juce::String& newName) override;
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    juce::AudioProcessorValueTreeState apvt;
+    juce::AudioProcessorValueTreeState::ParameterLayout createAPVT();
 
 private:
     
-    
+    juce::Synthesiser synth;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessor)
 };

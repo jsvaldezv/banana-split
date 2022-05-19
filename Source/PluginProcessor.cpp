@@ -10,12 +10,26 @@ MidiSynthAudioProcessor::MidiSynthAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), apvt(*this, nullptr, "PARAMETERS", createAPVT())
 #endif
 {
+    synth.addSound(new SynthSound());
+    synth.addVoice(new SynthVoice());
 }
 
 MidiSynthAudioProcessor::~MidiSynthAudioProcessor(){}
+
+juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::createAPVT()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout params;
+    
+    params.add(std::make_unique<juce::AudioParameterChoice>("OscOneType", "OscOneType", juce::StringArray("Sin",
+                                                                                                          "Square",
+                                                                                                          "Triangle",
+                                                                                                          "Saw"), 0));
+    
+    return params;
+}
 
 const juce::String MidiSynthAudioProcessor::getName() const
 {
@@ -73,7 +87,18 @@ const juce::String MidiSynthAudioProcessor::getProgramName ([[maybe_unused]] int
 
 void MidiSynthAudioProcessor::changeProgramName ([[maybe_unused]] int index, [[maybe_unused]] const juce::String& newName){}
 
-void MidiSynthAudioProcessor::prepareToPlay ([[maybe_unused]] double sampleRate, [[maybe_unused]] int samplesPerBlock){}
+void MidiSynthAudioProcessor::prepareToPlay ([[maybe_unused]] double sampleRate, [[maybe_unused]] int samplesPerBlock)
+{
+    synth.setCurrentPlaybackSampleRate(sampleRate);
+    
+    for(int i = 0; i < synth.getNumVoices(); i++)
+    {
+        if(auto voice = dynamic_cast<SynthVoice*>(synth.getVoice(i)))
+        {
+            voice->prepare(sampleRate, samplesPerBlock);
+        }
+    }
+}
 
 void MidiSynthAudioProcessor::releaseResources(){}
 
@@ -97,7 +122,7 @@ bool MidiSynthAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts
 #endif
 
 void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
-                                            [[maybe_unused]] juce::MidiBuffer& midiMessages)
+                                            juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -105,9 +130,16 @@ void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
-
     
+    for(int i = 0; i < synth.getNumVoices(); i++)
+    {
+        if(auto voice = dynamic_cast<juce::SynthesiserVoice*>(synth.getVoice(i)))
+        {
+            // PARAMETERS
+        }
+    }
     
+    synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
 
 bool MidiSynthAudioProcessor::hasEditor() const
