@@ -54,6 +54,8 @@ void SynthVoice::prepare(double inSampleRate, int inSamplesPerBlock, int inNumCh
     spec.maximumBlockSize = static_cast<juce::uint32>(inSamplesPerBlock);
     
     oscOne.prepare(spec);
+    //oscOne.initialise([](float x) { return std::sinf(2.0f * juce::MathConstants<float>::pi * x); });
+    oscOne.initialise([](float x) { return x / juce::MathConstants<float>::pi * x; });
     
     isPrepared = true;
 }

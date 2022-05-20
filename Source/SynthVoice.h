@@ -42,7 +42,7 @@ private:
     bool isPrepared {false};
     
     // OSC ONE
-    juce::dsp::Oscillator<float> oscOne { [](float x) { return std::sin(x); }};
+    juce::dsp::Oscillator<float> oscOne;
     juce::ADSR adsr;
     juce::ADSR::Parameters adsrParams;
     juce::AudioBuffer<float> synthBuffer;
