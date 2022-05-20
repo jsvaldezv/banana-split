@@ -37,6 +37,8 @@ public:
     
     void renderNextBlock (juce::AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override;
     
+    void setWaveType(int inType);
+    
 private:
     
     bool isPrepared {false};

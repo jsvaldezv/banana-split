@@ -62,11 +62,13 @@ void SynthVoice::prepare(double inSampleRate, int inSamplesPerBlock, int inNumCh
 
 void SynthVoice::updateParameters(juce::AudioProcessorValueTreeState& inAPVT)
 {
+    auto typeOne = static_cast<int>(inAPVT.getRawParameterValue("OscOne")->load());
     auto attack = inAPVT.getRawParameterValue("Attack")->load();
     auto decay = inAPVT.getRawParameterValue("Decay")->load();
     auto sustain = inAPVT.getRawParameterValue("Sustain")->load();
     auto release = inAPVT.getRawParameterValue("Release")->load();
     
+    setWaveType(typeOne);
     adsrParams.attack = attack;
     adsrParams.decay = decay;
     adsrParams.sustain = sustain;
@@ -95,5 +97,31 @@ void SynthVoice::renderNextBlock (juce::AudioBuffer<float>& outputBuffer, int st
         
         if(!adsr.isActive())
             clearCurrentNote();
+    }
+}
+
+void SynthVoice::setWaveType(int inType)
+{
+    switch(inType)
+    {
+        // SIN
+        case 0:
+            oscOne.initialise([](float x) { return std::sinf(x); });
+            break;
+        
+        // SQUARE
+        case 1:
+            oscOne.initialise([](float x) { return x < 0.0f ? -1.0f : 1.0f; });
+            break;
+        
+        // TRIANGLE
+        case 2:
+            oscOne.initialise([](float x) { return (2.0f / juce::MathConstants<float>::pi) * std::asinf(std::sinf(2.0f * juce::MathConstants<float>::pi * x)); });
+            break;
+        
+        // SAW
+        case 3:
+            oscOne.initialise([](float x) { return x / juce::MathConstants<float>::pi * x; });
+            break;
     }
 }
