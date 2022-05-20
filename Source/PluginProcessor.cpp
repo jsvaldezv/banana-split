@@ -10,12 +10,31 @@ MidiSynthAudioProcessor::MidiSynthAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), apvt(*this, nullptr, "PARAMETERS", createAPVT())
 #endif
 {
+    synth.addSound(new SynthSound());
+    synth.addVoice(new SynthVoice());
 }
 
 MidiSynthAudioProcessor::~MidiSynthAudioProcessor(){}
+
+juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::createAPVT()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout params;
+    
+    params.add(std::make_unique<juce::AudioParameterChoice>("OscOne", "Osc One", juce::StringArray("Sin", "Square", "Triangle", "Saw"), 0));
+    
+    params.add(std::make_unique<juce::AudioParameterFloat>("Attack", "Attack", 0.1f, 1.0f, 0.1f));
+    params.add(std::make_unique<juce::AudioParameterFloat>("Decay", "Decay", 0.1f, 1.0f, 0.1f));
+    params.add(std::make_unique<juce::AudioParameterFloat>("Sustain", "Sustain", 0.1f, 1.0f, 1.0f));
+    params.add(std::make_unique<juce::AudioParameterFloat>("Release", "Release", 0.1f, 1.0f, 0.4f));
+    
+    params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmFreq", "OscOneFmFreq", 0.0f, 1000.0f, 5.0f));
+    params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmDepth", "OscOneFmDepth", 0.0f, 1000.0f, 500.0f));
+    
+    return params;
+}
 
 const juce::String MidiSynthAudioProcessor::getName() const
 {
@@ -73,7 +92,18 @@ const juce::String MidiSynthAudioProcessor::getProgramName ([[maybe_unused]] int
 
 void MidiSynthAudioProcessor::changeProgramName ([[maybe_unused]] int index, [[maybe_unused]] const juce::String& newName){}
 
-void MidiSynthAudioProcessor::prepareToPlay ([[maybe_unused]] double sampleRate, [[maybe_unused]] int samplesPerBlock){}
+void MidiSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+{
+    synth.setCurrentPlaybackSampleRate(sampleRate);
+    
+    for(int i = 0; i < synth.getNumVoices(); i++)
+    {
+        if(auto voice = dynamic_cast<SynthVoice*>(synth.getVoice(i)))
+        {
+            voice->prepare(sampleRate, samplesPerBlock, getTotalNumInputChannels());
+        }
+    }
+}
 
 void MidiSynthAudioProcessor::releaseResources(){}
 
@@ -97,7 +127,7 @@ bool MidiSynthAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts
 #endif
 
 void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
-                                            [[maybe_unused]] juce::MidiBuffer& midiMessages)
+                                            juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -105,9 +135,17 @@ void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
-
     
+    for(int i = 0; i < synth.getNumVoices(); i++)
+    {
+        if(auto voice = dynamic_cast<SynthVoice*>(synth.getVoice(i)))
+        {
+            // PARAMETERS
+            voice->updateParameters(apvt);
+        }
+    }
     
+    synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
 
 bool MidiSynthAudioProcessor::hasEditor() const
@@ -117,7 +155,8 @@ bool MidiSynthAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* MidiSynthAudioProcessor::createEditor()
 {
-    return new MidiSynthAudioProcessorEditor (*this);
+    //return new MidiSynthAudioProcessorEditor (*this);
+    return new juce::GenericAudioProcessorEditor (*this);
 }
 
 void MidiSynthAudioProcessor::getStateInformation ([[maybe_unused]] juce::MemoryBlock& destData){}
