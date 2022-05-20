@@ -23,7 +23,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::cre
 {
     juce::AudioProcessorValueTreeState::ParameterLayout params;
     
-    params.add(std::make_unique<juce::AudioParameterChoice>("OscOneType", "OscOneType", juce::StringArray("Sin", "Square", "Triangle", "Saw"), 0));
+    params.add(std::make_unique<juce::AudioParameterChoice>("OscOne", "Osc One", juce::StringArray("Sin", "Square", "Triangle", "Saw"), 0));
     
     params.add(std::make_unique<juce::AudioParameterFloat>("Attack", "Attack", 0.1f, 1.0f, 0.1f));
     params.add(std::make_unique<juce::AudioParameterFloat>("Decay", "Decay", 0.1f, 1.0f, 0.1f));
@@ -135,9 +135,10 @@ void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     
     for(int i = 0; i < synth.getNumVoices(); i++)
     {
-        if(auto voice = dynamic_cast<juce::SynthesiserVoice*>(synth.getVoice(i)))
+        if(auto voice = dynamic_cast<SynthVoice*>(synth.getVoice(i)))
         {
             // PARAMETERS
+            voice->updateParameters(apvt);
         }
     }
     

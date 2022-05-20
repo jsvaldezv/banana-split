@@ -47,11 +47,6 @@ void SynthVoice::pitchWheelMoved ([[maybe_unused]] int newPitchWheelValue) {}
 void SynthVoice::prepare(double inSampleRate, int inSamplesPerBlock, int inNumChannels)
 {
     adsr.setSampleRate(inSampleRate);
-    adsrParams.attack = 0.8f;
-    adsrParams.decay = 0.8f;
-    adsrParams.sustain = 1.0f;
-    adsrParams.release = 1.5f;
-    adsr.setParameters(adsrParams);
     
     juce::dsp::ProcessSpec spec;
     spec.sampleRate = inSampleRate;
@@ -61,6 +56,20 @@ void SynthVoice::prepare(double inSampleRate, int inSamplesPerBlock, int inNumCh
     oscOne.prepare(spec);
     
     isPrepared = true;
+}
+
+void SynthVoice::updateParameters(juce::AudioProcessorValueTreeState& inAPVT)
+{
+    auto attack = inAPVT.getRawParameterValue("Attack")->load();
+    auto decay = inAPVT.getRawParameterValue("Decay")->load();
+    auto sustain = inAPVT.getRawParameterValue("Sustain")->load();
+    auto release = inAPVT.getRawParameterValue("Release")->load();
+    
+    adsrParams.attack = attack;
+    adsrParams.decay = decay;
+    adsrParams.sustain = sustain;
+    adsrParams.release = release;
+    adsr.setParameters(adsrParams);
 }
 
 void SynthVoice::renderNextBlock (juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples)

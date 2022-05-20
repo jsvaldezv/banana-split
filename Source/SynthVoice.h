@@ -33,6 +33,8 @@ public:
     
     void prepare(double inSampleRate, int inSamplesPerBlock, int inNumChannels);
     
+    void updateParameters(juce::AudioProcessorValueTreeState& inAPVT);
+    
     void renderNextBlock (juce::AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override;
     
 private:
