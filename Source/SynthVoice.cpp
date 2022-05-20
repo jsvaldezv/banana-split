@@ -24,9 +24,10 @@ void SynthVoice::startNote (int midiNoteNumber,
                             [[maybe_unused]] juce::SynthesiserSound *sound,
                             [[maybe_unused]] int currentPitchWheelPosition)
 {
+    mMidiNote = midiNoteNumber;
     auto frequency = static_cast<float>(juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber));
     
-    oscOne.setFrequency(frequency);
+    oscOne.setFrequency(frequency + fmMod);
     
     adsr.noteOn();
 }
@@ -54,8 +55,9 @@ void SynthVoice::prepare(double inSampleRate, int inSamplesPerBlock, int inNumCh
     spec.maximumBlockSize = static_cast<juce::uint32>(inSamplesPerBlock);
     
     oscOne.prepare(spec);
-    //oscOne.initialise([](float x) { return std::sinf(2.0f * juce::MathConstants<float>::pi * x); });
     oscOne.initialise([](float x) { return x / juce::MathConstants<float>::pi * x; });
+    oscOneFm.prepare(spec);
+    oscOneFm.initialise([](float x) { return std::sin(x); });
     
     isPrepared = true;
 }
@@ -67,6 +69,8 @@ void SynthVoice::updateParameters(juce::AudioProcessorValueTreeState& inAPVT)
     auto decay = inAPVT.getRawParameterValue("Decay")->load();
     auto sustain = inAPVT.getRawParameterValue("Sustain")->load();
     auto release = inAPVT.getRawParameterValue("Release")->load();
+    auto fmFreq = inAPVT.getRawParameterValue("OscOneFmFreq")->load();
+    auto fmDepthUser = inAPVT.getRawParameterValue("OscOneFmDepth")->load();
     
     setWaveType(typeOne);
     adsrParams.attack = attack;
@@ -74,6 +78,10 @@ void SynthVoice::updateParameters(juce::AudioProcessorValueTreeState& inAPVT)
     adsrParams.sustain = sustain;
     adsrParams.release = release;
     adsr.setParameters(adsrParams);
+    
+    oscOneFm.setFrequency(fmFreq);
+    fmDepth = fmDepthUser;
+    oscOne.setFrequency(static_cast<float>(juce::MidiMessage::getMidiNoteInHertz(mMidiNote)) + fmMod);
 }
 
 void SynthVoice::renderNextBlock (juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
@@ -85,10 +93,18 @@ void SynthVoice::renderNextBlock (juce::AudioBuffer<float>& outputBuffer, int st
     
     synthBuffer.setSize(outputBuffer.getNumChannels(), numSamples, false, false, true);
     synthBuffer.clear();
-    
     juce::dsp::AudioBlock<float> audioBlock { synthBuffer };
-    oscOne.process(juce::dsp::ProcessContextReplacing<float> (audioBlock));
     
+    for(auto channel = 0; channel < static_cast<int>(audioBlock.getNumChannels()); ++channel)
+    {
+        for(int i = 0; i < static_cast<int>(audioBlock.getNumSamples()); i++)
+        {
+            auto sample = audioBlock.getSample(channel, i);
+            fmMod = oscOneFm.processSample(sample) * fmDepth;
+        }
+    }
+    
+    oscOne.process(juce::dsp::ProcessContextReplacing<float> (audioBlock));
     adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
     
     for(int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)

@@ -44,9 +44,14 @@ private:
     bool isPrepared {false};
     
     // OSC ONE
+    int mMidiNote {0};
     juce::dsp::Oscillator<float> oscOne;
     juce::ADSR adsr;
     juce::ADSR::Parameters adsrParams;
     juce::AudioBuffer<float> synthBuffer;
+    
+    juce::dsp::Oscillator<float> oscOneFm;
+    float fmMod {0.0f};
+    float fmDepth {0.0f};
     
 };

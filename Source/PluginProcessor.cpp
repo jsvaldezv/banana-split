@@ -30,6 +30,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::cre
     params.add(std::make_unique<juce::AudioParameterFloat>("Sustain", "Sustain", 0.1f, 1.0f, 1.0f));
     params.add(std::make_unique<juce::AudioParameterFloat>("Release", "Release", 0.1f, 1.0f, 0.4f));
     
+    params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmFreq", "OscOneFmFreq", 0.0f, 1000.0f, 5.0f));
+    params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmDepth", "OscOneFmDepth", 0.0f, 1000.0f, 500.0f));
+    
     return params;
 }
 
