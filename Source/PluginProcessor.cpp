@@ -23,10 +23,12 @@ juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::cre
 {
     juce::AudioProcessorValueTreeState::ParameterLayout params;
     
-    params.add(std::make_unique<juce::AudioParameterChoice>("OscOneType", "OscOneType", juce::StringArray("Sin",
-                                                                                                          "Square",
-                                                                                                          "Triangle",
-                                                                                                          "Saw"), 0));
+    params.add(std::make_unique<juce::AudioParameterChoice>("OscOneType", "OscOneType", juce::StringArray("Sin", "Square", "Triangle", "Saw"), 0));
+    
+    params.add(std::make_unique<juce::AudioParameterFloat>("Attack", "Attack", 0.1f, 1.0f, 0.1f));
+    params.add(std::make_unique<juce::AudioParameterFloat>("Decay", "Decay", 0.1f, 1.0f, 0.1f));
+    params.add(std::make_unique<juce::AudioParameterFloat>("Sustain", "Sustain", 0.1f, 1.0f, 1.0f));
+    params.add(std::make_unique<juce::AudioParameterFloat>("Release", "Release", 0.1f, 1.0f, 0.4f));
     
     return params;
 }
@@ -87,7 +89,7 @@ const juce::String MidiSynthAudioProcessor::getProgramName ([[maybe_unused]] int
 
 void MidiSynthAudioProcessor::changeProgramName ([[maybe_unused]] int index, [[maybe_unused]] const juce::String& newName){}
 
-void MidiSynthAudioProcessor::prepareToPlay ([[maybe_unused]] double sampleRate, [[maybe_unused]] int samplesPerBlock)
+void MidiSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     synth.setCurrentPlaybackSampleRate(sampleRate);
     
@@ -95,7 +97,7 @@ void MidiSynthAudioProcessor::prepareToPlay ([[maybe_unused]] double sampleRate,
     {
         if(auto voice = dynamic_cast<SynthVoice*>(synth.getVoice(i)))
         {
-            voice->prepare(sampleRate, samplesPerBlock);
+            voice->prepare(sampleRate, samplesPerBlock, getTotalNumInputChannels());
         }
     }
 }
@@ -149,7 +151,8 @@ bool MidiSynthAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* MidiSynthAudioProcessor::createEditor()
 {
-    return new MidiSynthAudioProcessorEditor (*this);
+    //return new MidiSynthAudioProcessorEditor (*this);
+    return new juce::GenericAudioProcessorEditor (*this);
 }
 
 void MidiSynthAudioProcessor::getStateInformation ([[maybe_unused]] juce::MemoryBlock& destData){}

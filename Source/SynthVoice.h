@@ -31,17 +31,18 @@ public:
     
     void pitchWheelMoved (int newPitchWheelValue) override;
     
-    void prepare(double inSampleRate, int inSamplesPerBlock);
+    void prepare(double inSampleRate, int inSamplesPerBlock, int inNumChannels);
     
     void renderNextBlock (juce::AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override;
     
 private:
     
-    Oscillator oscOne;
-    
     bool isPrepared {false};
     
+    // OSC ONE
+    juce::dsp::Oscillator<float> oscOne { [](float x) { return std::sin(x); }};
     juce::ADSR adsr;
     juce::ADSR::Parameters adsrParams;
+    juce::AudioBuffer<float> synthBuffer;
     
 };
