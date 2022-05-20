@@ -81,7 +81,9 @@ void SynthVoice::updateParameters(juce::AudioProcessorValueTreeState& inAPVT)
     
     oscOneFm.setFrequency(fmFreq);
     fmDepth = fmDepthUser;
-    oscOne.setFrequency(static_cast<float>(juce::MidiMessage::getMidiNoteInHertz(mMidiNote)) + fmMod);
+    
+    auto currentFreq = static_cast<float>(juce::MidiMessage::getMidiNoteInHertz(mMidiNote)) + fmMod;
+    oscOne.setFrequency(currentFreq >= 0 ? currentFreq : currentFreq * 1.0f);
 }
 
 void SynthVoice::renderNextBlock (juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
