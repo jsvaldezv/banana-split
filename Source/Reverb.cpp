@@ -14,16 +14,10 @@ Reverb::Reverb(){}
 
 Reverb::~Reverb(){}
 
-void Reverb::prepare(double inSampleRate, int inNumChannels, int inSamplesPerBlock)
-{
-    // INICIALIZAR SPEC
-    juce::dsp::ProcessSpec spec;
-    spec.sampleRate = inSampleRate;
-    spec.maximumBlockSize = static_cast<juce::uint32>(inSamplesPerBlock);
-    spec.numChannels = static_cast<juce::uint32>(inNumChannels);
-    
+void Reverb::prepare(juce::dsp::ProcessSpec inSpec)
+{    
     reverb.reset();
-    reverb.prepare(spec);
+    reverb.prepare(inSpec);
     
     reverb.setParameters(revParams);
 }

@@ -109,8 +109,13 @@ void MidiSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBl
         }
     }
     
-    reverb.prepare(sampleRate, getTotalNumInputChannels(), samplesPerBlock);
-    chorus.prepare(sampleRate, getTotalNumInputChannels(), samplesPerBlock);
+    juce::dsp::ProcessSpec spec;
+    spec.sampleRate = sampleRate;
+    spec.maximumBlockSize = static_cast<juce::uint32>(samplesPerBlock);
+    spec.numChannels = 2;
+    
+    reverb.prepare(spec);
+    chorus.prepare(spec);
     delay.prepare(sampleRate);
 }
 

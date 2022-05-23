@@ -14,22 +14,16 @@ Chorus::Chorus(){}
 
 Chorus::~Chorus(){}
 
-void Chorus::prepare(double inSampleRate, int inNumChannels, int inSamplesPerBlock)
+void Chorus::prepare(juce::dsp::ProcessSpec inSpec)
 {
-    // INICIALIZAR SPEC
-    juce::dsp::ProcessSpec spec;
-    spec.sampleRate = inSampleRate;
-    spec.maximumBlockSize = static_cast<juce::uint32>(inSamplesPerBlock);
-    spec.numChannels = static_cast<juce::uint32>(inNumChannels);
-    
     chorus.reset();
-    chorus.prepare(spec);
+    chorus.prepare(inSpec);
     
-    chorus.setMix(0.7f);
     chorus.setRate(2.0f);
-    chorus.setDepth(1.0f);
-    chorus.setFeedback(0.7f);
+    chorus.setDepth(0.9f);
     chorus.setCentreDelay(50.0f);
+    chorus.setFeedback(0.7f);
+    chorus.setMix(0.7f);
 }
 
 void Chorus::process(juce::AudioBuffer<float> inBuffer)

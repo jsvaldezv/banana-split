@@ -18,7 +18,7 @@ public:
     Chorus();
     ~Chorus();
     
-    void prepare(double inSampleRate, int inNumChannels, int inSamplesPerBlock);
+    void prepare(juce::dsp::ProcessSpec inSpec);
     
     void process(juce::AudioBuffer<float> inBuffer);
     
