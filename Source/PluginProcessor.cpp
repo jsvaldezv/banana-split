@@ -108,6 +108,10 @@ void MidiSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBl
             voice->prepare(sampleRate, samplesPerBlock, getTotalNumInputChannels());
         }
     }
+    
+    reverb.prepare(sampleRate, getTotalNumInputChannels(), samplesPerBlock);
+    chorus.prepare(sampleRate, getTotalNumInputChannels(), samplesPerBlock);
+    delay.prepare(sampleRate);
 }
 
 void MidiSynthAudioProcessor::releaseResources(){}
@@ -151,6 +155,24 @@ void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     }
     
     synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+    
+    //************************************************** FX ***************************************************//
+    bool revToggle = static_cast<bool>(apvt.getRawParameterValue("Reverb")->load());
+    bool choToggle = static_cast<bool>(apvt.getRawParameterValue("Chorus")->load());
+    bool delayToggle = static_cast<bool>(apvt.getRawParameterValue("Delay")->load());
+    bool distorToggle = static_cast<bool>(apvt.getRawParameterValue("Distortion")->load());
+    
+    if(revToggle)
+        reverb.process(buffer);
+    
+    if(choToggle)
+        chorus.process(buffer);
+    
+    if(distorToggle)
+        distortion.process(buffer);
+    
+    if(delayToggle)
+        delay.process(buffer);
 }
 
 bool MidiSynthAudioProcessor::hasEditor() const

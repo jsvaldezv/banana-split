@@ -45,5 +45,10 @@ private:
     
     juce::Synthesiser synth;
     
+    Reverb reverb;
+    Delay delay;
+    Chorus chorus;
+    Distortion distortion;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessor)
 };
