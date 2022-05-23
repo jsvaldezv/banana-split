@@ -4,6 +4,16 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="zM2Pts" name="BananaSplit">
     <GROUP id="{90215668-B6B9-C063-B3C0-8E4AE75C4299}" name="DSP">
+      <GROUP id="{08D68834-EED8-8B65-BC01-E913D52098B0}" name="FX">
+        <FILE id="YPHz9V" name="Chorus.cpp" compile="1" resource="0" file="Source/Chorus.cpp"/>
+        <FILE id="UY5ydz" name="Chorus.h" compile="0" resource="0" file="Source/Chorus.h"/>
+        <FILE id="vEjHwU" name="Reverb.cpp" compile="1" resource="0" file="Source/Reverb.cpp"/>
+        <FILE id="LWroSC" name="Reverb.h" compile="0" resource="0" file="Source/Reverb.h"/>
+        <FILE id="fHsk8k" name="Delay.cpp" compile="1" resource="0" file="Source/Delay.cpp"/>
+        <FILE id="Zbpg6L" name="Delay.h" compile="0" resource="0" file="Source/Delay.h"/>
+        <FILE id="HJWDn5" name="Distortion.cpp" compile="1" resource="0" file="Source/Distortion.cpp"/>
+        <FILE id="dZxzpK" name="Distortion.h" compile="0" resource="0" file="Source/Distortion.h"/>
+      </GROUP>
       <FILE id="kbrU0y" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
       <FILE id="dc3d8a" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
       <FILE id="onzz7d" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>

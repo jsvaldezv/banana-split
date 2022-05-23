@@ -5,6 +5,11 @@
 #include "SynthSound.h"
 #include "SynthVoice.h"
 
+#include "Chorus.h"
+#include "Delay.h"
+#include "Distortion.h"
+#include "Reverb.h"
+
 class MidiSynthAudioProcessor  : public juce::AudioProcessor
 {
 public:

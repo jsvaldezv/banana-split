@@ -33,6 +33,11 @@ juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::cre
     params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmFreq", "OscOneFmFreq", 0.0f, 1000.0f, 5.0f));
     params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmDepth", "OscOneFmDepth", 0.0f, 1000.0f, 500.0f));
     
+    params.add(std::make_unique<juce::AudioParameterBool>("Reverb", "Reverb", false));
+    params.add(std::make_unique<juce::AudioParameterBool>("Chorus", "Chorus", false));
+    params.add(std::make_unique<juce::AudioParameterBool>("Delay", "Delay", false));
+    params.add(std::make_unique<juce::AudioParameterBool>("Distortion", "Distortion", false));
+    
     return params;
 }
 
