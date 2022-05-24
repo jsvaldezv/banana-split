@@ -33,6 +33,11 @@ juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::cre
     params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmFreq", "OscOneFmFreq", 0.0f, 1000.0f, 5.0f));
     params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmDepth", "OscOneFmDepth", 0.0f, 1000.0f, 500.0f));
     
+    params.add(std::make_unique<juce::AudioParameterBool>("Reverb", "Reverb", false));
+    params.add(std::make_unique<juce::AudioParameterBool>("Chorus", "Chorus", false));
+    params.add(std::make_unique<juce::AudioParameterBool>("Delay", "Delay", false));
+    params.add(std::make_unique<juce::AudioParameterBool>("Distortion", "Distortion", false));
+    
     return params;
 }
 
@@ -103,6 +108,15 @@ void MidiSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBl
             voice->prepare(sampleRate, samplesPerBlock, getTotalNumInputChannels());
         }
     }
+    
+    juce::dsp::ProcessSpec spec;
+    spec.sampleRate = sampleRate;
+    spec.maximumBlockSize = static_cast<juce::uint32>(samplesPerBlock);
+    spec.numChannels = 2;
+    
+    reverb.prepare(spec);
+    chorus.prepare(spec);
+    delay.prepare(sampleRate);
 }
 
 void MidiSynthAudioProcessor::releaseResources(){}
@@ -146,6 +160,24 @@ void MidiSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     }
     
     synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+    
+    //************************************************** FX ***************************************************//
+    bool revToggle = static_cast<bool>(apvt.getRawParameterValue("Reverb")->load());
+    bool choToggle = static_cast<bool>(apvt.getRawParameterValue("Chorus")->load());
+    bool delayToggle = static_cast<bool>(apvt.getRawParameterValue("Delay")->load());
+    bool distorToggle = static_cast<bool>(apvt.getRawParameterValue("Distortion")->load());
+    
+    if(revToggle)
+        reverb.process(buffer);
+    
+    if(choToggle)
+        chorus.process(buffer);
+    
+    if(distorToggle)
+        distortion.process(buffer);
+    
+    if(delayToggle)
+        delay.process(buffer);
 }
 
 bool MidiSynthAudioProcessor::hasEditor() const

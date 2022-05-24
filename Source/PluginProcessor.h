@@ -5,6 +5,11 @@
 #include "SynthSound.h"
 #include "SynthVoice.h"
 
+#include "Chorus.h"
+#include "Delay.h"
+#include "Distortion.h"
+#include "Reverb.h"
+
 class MidiSynthAudioProcessor  : public juce::AudioProcessor
 {
 public:
@@ -39,6 +44,11 @@ public:
 private:
     
     juce::Synthesiser synth;
+    
+    Reverb reverb;
+    Delay delay;
+    Chorus chorus;
+    Distortion distortion;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessor)
 };
