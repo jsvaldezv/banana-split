@@ -187,8 +187,8 @@ bool MidiSynthAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* MidiSynthAudioProcessor::createEditor()
 {
-    //return new MidiSynthAudioProcessorEditor (*this);
-    return new juce::GenericAudioProcessorEditor (*this);
+    return new MidiSynthAudioProcessorEditor (*this);
+    //return new juce::GenericAudioProcessorEditor (*this);
 }
 
 void MidiSynthAudioProcessor::getStateInformation ([[maybe_unused]] juce::MemoryBlock& destData){}
