@@ -9,6 +9,7 @@
 #include "Delay.h"
 #include "Distortion.h"
 #include "Reverb.h"
+#include "Gain.h"
 
 class MidiSynthAudioProcessor  : public juce::AudioProcessor
 {

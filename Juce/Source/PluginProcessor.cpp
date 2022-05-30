@@ -40,6 +40,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::cre
     params.add(std::make_unique<juce::AudioParameterBool>("Delay", "Delay", false));
     params.add(std::make_unique<juce::AudioParameterBool>("Distortion", "Distortion", false));
     
+    params.add(std::make_unique<juce::AudioParameterInt>("Volume", "Volume", -60.0f, 12.0f, 0.0f));
+    
     return params;
 }
 
