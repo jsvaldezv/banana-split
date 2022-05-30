@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="uKf8N1" name="BananaSplit" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              displaySplashScreen="1">
   <MAINGROUP id="zM2Pts" name="BananaSplit">
     <GROUP id="{90215668-B6B9-C063-B3C0-8E4AE75C4299}" name="DSP">
       <GROUP id="{08D68834-EED8-8B65-BC01-E913D52098B0}" name="FX">
