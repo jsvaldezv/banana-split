@@ -4,18 +4,16 @@
 MidiSynthAudioProcessorEditor::MidiSynthAudioProcessorEditor (MidiSynthAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    setSize (400, 300);
+    setSize (700, 400);
+    
+    addAndMakeVisible (keyboard);
 }
 
 MidiSynthAudioProcessorEditor::~MidiSynthAudioProcessorEditor(){}
 
-void MidiSynthAudioProcessorEditor::paint (juce::Graphics& g)
+void MidiSynthAudioProcessorEditor::paint ([[maybe_unused]] juce::Graphics& g){}
+
+void MidiSynthAudioProcessorEditor::resized()
 {
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Banana Split!", getLocalBounds(), juce::Justification::centred, 1);
+    keyboard.setBounds(0.0f, 300, 700, 100);
 }
-
-void MidiSynthAudioProcessorEditor::resized(){}

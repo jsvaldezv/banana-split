@@ -31,7 +31,7 @@ public:
     
     void reset();
     
-    void process(juce::AudioBuffer<float> inBuffer);
+    void process(juce::AudioBuffer<float>& inBuffer);
     
     float getDelayedSample(float inSample, int inChannel);
 

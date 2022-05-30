@@ -46,6 +46,7 @@ private:
     // OSC ONE
     int mMidiNote {0};
     juce::dsp::Oscillator<float> oscOne;
+    juce::dsp::Gain<float> gainOne;
     juce::ADSR adsr;
     juce::ADSR::Parameters adsrParams;
     juce::AudioBuffer<float> synthBuffer;
@@ -54,4 +55,5 @@ private:
     float fmMod {0.0f};
     float fmDepth {0.0f};
     
+    //juce::MidiKeyboardState& keyboardState;
 };

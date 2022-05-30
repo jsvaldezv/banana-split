@@ -19,7 +19,7 @@ public:
     
     ~Distortion();
     
-    void process(juce::AudioBuffer<float> inBuffer);
+    void process(juce::AudioBuffer<float>& inBuffer);
     
 private:
     

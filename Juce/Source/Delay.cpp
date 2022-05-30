@@ -24,7 +24,7 @@ void Delay::reset()
     juce::zeromem(circularBuffer, (sizeof(double) * maxBufferDelaySize));
 }
 
-void Delay::process(juce::AudioBuffer<float> inBuffer)
+void Delay::process(juce::AudioBuffer<float>& inBuffer)
 {
     for(int channel = 0; channel < inBuffer.getNumChannels(); channel++)
     {

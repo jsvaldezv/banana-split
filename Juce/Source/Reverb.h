@@ -27,4 +27,6 @@ private:
     juce::dsp::Reverb::Parameters revParams;
     juce::dsp::Reverb reverb;
     
+    juce::dsp::Gain<float> gain;
+    
 };
