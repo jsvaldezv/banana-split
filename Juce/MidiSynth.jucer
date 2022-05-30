@@ -4,6 +4,10 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               displaySplashScreen="1">
   <MAINGROUP id="zM2Pts" name="BananaSplit">
+    <GROUP id="{08B0C5FC-0FB8-ABFF-6033-E1B357146237}" name="GUI">
+      <FILE id="vsA0mF" name="KeyboardGui.cpp" compile="1" resource="0" file="Source/KeyboardGui.cpp"/>
+      <FILE id="fBVQLH" name="KeyboardGui.h" compile="0" resource="0" file="Source/KeyboardGui.h"/>
+    </GROUP>
     <GROUP id="{90215668-B6B9-C063-B3C0-8E4AE75C4299}" name="DSP">
       <GROUP id="{08D68834-EED8-8B65-BC01-E913D52098B0}" name="FX">
         <FILE id="YPHz9V" name="Chorus.cpp" compile="1" resource="0" file="Source/Chorus.cpp"/>

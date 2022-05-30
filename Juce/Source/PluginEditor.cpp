@@ -2,10 +2,11 @@
 #include "PluginEditor.h"
 
 MidiSynthAudioProcessorEditor::MidiSynthAudioProcessorEditor (MidiSynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p),
+    : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    addAndMakeVisible (keyboard)
-    setSize (400, 300);
+    setSize (700, 400);
+    
+    addAndMakeVisible (keyboard);
 }
 
 MidiSynthAudioProcessorEditor::~MidiSynthAudioProcessorEditor(){}
@@ -17,8 +18,5 @@ void MidiSynthAudioProcessorEditor::paint (juce::Graphics& g)
 
 void MidiSynthAudioProcessorEditor::resized()
 {
-keyboard.setBoundsRelative(0.0f, 0.0f, 1.0f, 0.5f);
-
+    keyboard.setBounds(0.0f, 300, 700, 100);
 }
-
-

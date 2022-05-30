@@ -9,25 +9,22 @@
 */
 
 #pragma once
-
 #include <JuceHeader.h>
 
-//==============================================================================
-/*
-*/
 class KeyboardGui  : public juce::Component
 {
 public:
+    
     KeyboardGui();
     ~KeyboardGui() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
-    
 
-private: 
+private:
+    
     juce::MidiKeyboardState keyboardState;
     juce::MidiKeyboardComponent keyboardComponent;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardGui)
-
 };

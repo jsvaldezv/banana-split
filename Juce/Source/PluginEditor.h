@@ -14,10 +14,9 @@ public:
     void resized() override;
 
 private:
+    
     KeyboardGui keyboard;
     MidiSynthAudioProcessor& audioProcessor;
-   
-
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessorEditor)
 };

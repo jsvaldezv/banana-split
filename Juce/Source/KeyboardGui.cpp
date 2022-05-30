@@ -15,21 +15,16 @@
 KeyboardGui::KeyboardGui(): keyboardComponent (keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard)
 {
     addAndMakeVisible (keyboardComponent);
-
 }
 
-KeyboardGui::~KeyboardGui()
-{
-}
+KeyboardGui::~KeyboardGui(){}
 
 void KeyboardGui::paint (juce::Graphics& g)
 {
-    
-  
+    g.fillAll(juce::Colours::red);
 }
 
 void KeyboardGui::resized()
 {
-    
-
+    keyboardComponent.setBoundsRelative(0.0f, 0.0f, 1.0f, 1.0f);
 }
