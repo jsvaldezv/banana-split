@@ -14,7 +14,7 @@ Distortion::Distortion(){}
 
 Distortion::~Distortion(){}
 
-void Distortion::process(juce::AudioBuffer<float> inBuffer)
+void Distortion::process(juce::AudioBuffer<float>& inBuffer)
 {
     for(int channel = 0; channel < inBuffer.getNumChannels(); channel++)
     {

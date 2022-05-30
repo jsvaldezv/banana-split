@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    Reverb.h
-    Created: 23 May 2022 4:18:41pm
+    Distortion.h
+    Created: 23 May 2022 4:19:01pm
     Author:  Jesús Valdez
 
   ==============================================================================
@@ -11,20 +11,18 @@
 #pragma once
 #include <JuceHeader.h>
 
-class Reverb
+class Distortion
 {
 public:
     
-    Reverb();
-    ~Reverb();
+    Distortion();
     
-    void prepare(juce::dsp::ProcessSpec inSpec);
+    ~Distortion();
     
-    void process(juce::AudioBuffer<float> inBuffer);
+    void process(juce::AudioBuffer<float>& inBuffer);
     
 private:
     
-    juce::dsp::Reverb::Parameters revParams;
-    juce::dsp::Reverb reverb;
+    float gain {50.0f};
     
 };

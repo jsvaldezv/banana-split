@@ -59,18 +59,23 @@ void SynthVoice::prepare(double inSampleRate, int inSamplesPerBlock, int inNumCh
     oscOneFm.prepare(spec);
     oscOneFm.initialise([](float x) { return std::sin(x); });
     
+    gainOne.prepare(spec);
+    
     isPrepared = true;
 }
 
 void SynthVoice::updateParameters(juce::AudioProcessorValueTreeState& inAPVT)
 {
-    auto typeOne = static_cast<int>(inAPVT.getRawParameterValue("OscOne")->load());
+    auto typeOne = static_cast<int>(inAPVT.getRawParameterValue("Type")->load());
+    auto gainOneValue = inAPVT.getRawParameterValue("Gain")->load();
+    
     auto attack = inAPVT.getRawParameterValue("Attack")->load();
     auto decay = inAPVT.getRawParameterValue("Decay")->load();
     auto sustain = inAPVT.getRawParameterValue("Sustain")->load();
     auto release = inAPVT.getRawParameterValue("Release")->load();
-    auto fmFreq = inAPVT.getRawParameterValue("OscOneFmFreq")->load();
-    auto fmDepthUser = inAPVT.getRawParameterValue("OscOneFmDepth")->load();
+    
+    auto fmFreq = inAPVT.getRawParameterValue("FmFreq")->load();
+    auto fmDepthUser = inAPVT.getRawParameterValue("FmDepth")->load();
     
     setWaveType(typeOne);
     adsrParams.attack = attack;
@@ -78,6 +83,7 @@ void SynthVoice::updateParameters(juce::AudioProcessorValueTreeState& inAPVT)
     adsrParams.sustain = sustain;
     adsrParams.release = release;
     adsr.setParameters(adsrParams);
+    gainOne.setGainDecibels(gainOneValue);
     
     oscOneFm.setFrequency(fmFreq);
     fmDepth = fmDepthUser;
@@ -106,7 +112,10 @@ void SynthVoice::renderNextBlock (juce::AudioBuffer<float>& outputBuffer, int st
         }
     }
     
-    oscOne.process(juce::dsp::ProcessContextReplacing<float> (audioBlock));
+    juce::dsp::ProcessContextReplacing<float> block (audioBlock);
+    oscOne.process(block);
+    gainOne.process(block);
+    
     adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
     
     for(int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)
