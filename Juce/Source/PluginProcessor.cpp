@@ -25,22 +25,21 @@ juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::cre
 {
     juce::AudioProcessorValueTreeState::ParameterLayout params;
     
-    params.add(std::make_unique<juce::AudioParameterChoice>("OscOne", "Osc One", juce::StringArray("Sin", "Square", "Triangle", "Saw"), 0));
+    params.add(std::make_unique<juce::AudioParameterChoice>("Type", "Type", juce::StringArray("Sin", "Square", "Triangle", "Saw"), 0));
+    params.add(std::make_unique<juce::AudioParameterInt>("Gain", "Gain", -60.0f, 12.0f, -12.0f));
     
     params.add(std::make_unique<juce::AudioParameterFloat>("Attack", "Attack", 0.1f, 1.0f, 0.1f));
     params.add(std::make_unique<juce::AudioParameterFloat>("Decay", "Decay", 0.1f, 1.0f, 0.1f));
     params.add(std::make_unique<juce::AudioParameterFloat>("Sustain", "Sustain", 0.1f, 1.0f, 1.0f));
     params.add(std::make_unique<juce::AudioParameterFloat>("Release", "Release", 0.1f, 1.0f, 0.4f));
-    
-    params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmFreq", "OscOneFmFreq", 0.0f, 1000.0f, 5.0f));
-    params.add(std::make_unique<juce::AudioParameterFloat>("OscOneFmDepth", "OscOneFmDepth", 0.0f, 1000.0f, 50.0f));
+
+    params.add(std::make_unique<juce::AudioParameterFloat>("FmFreq", "FmFreq", 0.0f, 1000.0f, 5.0f));
+    params.add(std::make_unique<juce::AudioParameterFloat>("FmDepth", "FmDepth", 0.0f, 1000.0f, 50.0f));
     
     params.add(std::make_unique<juce::AudioParameterBool>("Reverb", "Reverb", false));
     params.add(std::make_unique<juce::AudioParameterBool>("Chorus", "Chorus", false));
     params.add(std::make_unique<juce::AudioParameterBool>("Delay", "Delay", false));
     params.add(std::make_unique<juce::AudioParameterBool>("Distortion", "Distortion", false));
-    
-    params.add(std::make_unique<juce::AudioParameterInt>("Volume", "Volume", -60.0f, 12.0f, 0.0f));
     
     return params;
 }

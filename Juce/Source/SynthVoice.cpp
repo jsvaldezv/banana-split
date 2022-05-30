@@ -66,14 +66,16 @@ void SynthVoice::prepare(double inSampleRate, int inSamplesPerBlock, int inNumCh
 
 void SynthVoice::updateParameters(juce::AudioProcessorValueTreeState& inAPVT)
 {
-    auto typeOne = static_cast<int>(inAPVT.getRawParameterValue("OscOne")->load());
+    auto typeOne = static_cast<int>(inAPVT.getRawParameterValue("Type")->load());
+    auto gainOneValue = inAPVT.getRawParameterValue("Gain")->load();
+    
     auto attack = inAPVT.getRawParameterValue("Attack")->load();
     auto decay = inAPVT.getRawParameterValue("Decay")->load();
     auto sustain = inAPVT.getRawParameterValue("Sustain")->load();
     auto release = inAPVT.getRawParameterValue("Release")->load();
-    auto fmFreq = inAPVT.getRawParameterValue("OscOneFmFreq")->load();
-    auto fmDepthUser = inAPVT.getRawParameterValue("OscOneFmDepth")->load();
-    auto gainOneValue = inAPVT.getRawParameterValue("Volume")->load();
+    
+    auto fmFreq = inAPVT.getRawParameterValue("FmFreq")->load();
+    auto fmDepthUser = inAPVT.getRawParameterValue("FmDepth")->load();
     
     setWaveType(typeOne);
     adsrParams.attack = attack;
