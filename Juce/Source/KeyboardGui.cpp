@@ -12,9 +12,10 @@
 #include "KeyboardGui.h"
 
 //==============================================================================
-KeyboardGui::KeyboardGui(): keyboardComponent (keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard)
+KeyboardGui::KeyboardGui(MidiSynthAudioProcessor& p): keyboardComponent (keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard), audioProcessor (p)
 {
     addAndMakeVisible (keyboardComponent);
+    startTimer(400);
 }
 
 KeyboardGui::~KeyboardGui(){}
@@ -27,4 +28,10 @@ void KeyboardGui::paint (juce::Graphics& g)
 void KeyboardGui::resized()
 {
     keyboardComponent.setBoundsRelative(0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+void KeyboardGui::timerCallback()
+{
+    keyboardComponent.grabKeyboardFocus();
+    stopTimer();
 }

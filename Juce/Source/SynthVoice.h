@@ -54,4 +54,5 @@ private:
     float fmMod {0.0f};
     float fmDepth {0.0f};
     
+    //juce::MidiKeyboardState& keyboardState;
 };

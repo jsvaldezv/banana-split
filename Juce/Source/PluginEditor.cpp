@@ -2,7 +2,7 @@
 #include "PluginEditor.h"
 
 MidiSynthAudioProcessorEditor::MidiSynthAudioProcessorEditor (MidiSynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+    : AudioProcessorEditor (&p), audioProcessor (p), keyboard(p)
 {
     setSize (700, 400);
     
