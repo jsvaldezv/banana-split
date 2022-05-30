@@ -12,21 +12,21 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 
-class KeyboardGui  : public juce::Component, public juce::Timer
+class KeyboardGUI : public juce::Component, public juce::Timer
 {
 public:
     
-    KeyboardGui(MidiSynthAudioProcessor&);
-    ~KeyboardGui() override;
+    KeyboardGUI(juce::MidiKeyboardState&);
+    ~KeyboardGUI() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
-    void timerCallback() override; 
+    void timerCallback() override;
+    
 private:
     
-    juce::MidiKeyboardState keyboardState;
-    juce::MidiKeyboardComponent keyboardComponent;
-    MidiSynthAudioProcessor& audioProcessor;
+    juce::MidiKeyboardState& keyboardState;
+    juce::MidiKeyboardComponent keyboardComponent {keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard};
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardGui)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardGUI)
 };

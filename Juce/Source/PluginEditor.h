@@ -1,7 +1,7 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "KeyboardGui.h"
+#include "KeyboardGUI.h"
 
 class MidiSynthAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
@@ -15,8 +15,9 @@ public:
 
 private:
     
-    KeyboardGui keyboard;
     MidiSynthAudioProcessor& audioProcessor;
+    
+    KeyboardGUI keyboard { audioProcessor.keyboardState };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessorEditor)
 };

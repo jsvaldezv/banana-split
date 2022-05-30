@@ -40,6 +40,8 @@ public:
     
     juce::AudioProcessorValueTreeState apvt;
     juce::AudioProcessorValueTreeState::ParameterLayout createAPVT();
+    
+    juce::MidiKeyboardState keyboardState;
 
 private:
     

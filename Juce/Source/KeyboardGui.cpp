@@ -9,28 +9,29 @@
 */
 
 #include <JuceHeader.h>
-#include "KeyboardGui.h"
+#include "KeyboardGUI.h"
 
-//==============================================================================
-KeyboardGui::KeyboardGui(MidiSynthAudioProcessor& p): keyboardComponent (keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard), audioProcessor (p)
+KeyboardGUI::KeyboardGUI(juce::MidiKeyboardState& keyState) : keyboardState(keyState)
 {
     addAndMakeVisible (keyboardComponent);
+    keyboardComponent.setMidiChannel(1);
+    
     startTimer(400);
 }
 
-KeyboardGui::~KeyboardGui(){}
+KeyboardGUI::~KeyboardGUI(){}
 
-void KeyboardGui::paint (juce::Graphics& g)
+void KeyboardGUI::paint (juce::Graphics& g)
 {
     g.fillAll(juce::Colours::red);
 }
 
-void KeyboardGui::resized()
+void KeyboardGUI::resized()
 {
     keyboardComponent.setBoundsRelative(0.0f, 0.0f, 1.0f, 1.0f);
 }
 
-void KeyboardGui::timerCallback()
+void KeyboardGUI::timerCallback()
 {
     keyboardComponent.grabKeyboardFocus();
     stopTimer();

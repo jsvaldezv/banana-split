@@ -2,7 +2,7 @@
 #include "PluginEditor.h"
 
 MidiSynthAudioProcessorEditor::MidiSynthAudioProcessorEditor (MidiSynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p), keyboard(p)
+    : AudioProcessorEditor (&p), audioProcessor (p)
 {
     setSize (700, 400);
     
@@ -11,10 +11,7 @@ MidiSynthAudioProcessorEditor::MidiSynthAudioProcessorEditor (MidiSynthAudioProc
 
 MidiSynthAudioProcessorEditor::~MidiSynthAudioProcessorEditor(){}
 
-void MidiSynthAudioProcessorEditor::paint (juce::Graphics& g)
-{
-   
-}
+void MidiSynthAudioProcessorEditor::paint ([[maybe_unused]] juce::Graphics& g){}
 
 void MidiSynthAudioProcessorEditor::resized()
 {
