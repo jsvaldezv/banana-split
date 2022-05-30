@@ -2,8 +2,9 @@
 #include "PluginEditor.h"
 
 MidiSynthAudioProcessorEditor::MidiSynthAudioProcessorEditor (MidiSynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+    : AudioProcessorEditor (&p), audioProcessor (p),
 {
+    addAndMakeVisible (keyboard)
     setSize (400, 300);
 }
 
@@ -11,11 +12,13 @@ MidiSynthAudioProcessorEditor::~MidiSynthAudioProcessorEditor(){}
 
 void MidiSynthAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Banana Split!", getLocalBounds(), juce::Justification::centred, 1);
+   
 }
 
-void MidiSynthAudioProcessorEditor::resized(){}
+void MidiSynthAudioProcessorEditor::resized()
+{
+keyboard.setBoundsRelative(0.0f, 0.0f, 1.0f, 0.5f);
+
+}
+
+
