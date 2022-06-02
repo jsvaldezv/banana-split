@@ -59,6 +59,14 @@ boolean potMoving = true; // If the potentiometer is moving
 unsigned long PTime[N_POTS] = {0}; // Previously stored time
 unsigned long timer[N_POTS] = {0}; // Stores the time that has elapsed since the timer was reset
 
+///////////////////////////////////////////// Checar**
+// MAKEY
+const int N_PUSHES = 4; //*  total numbers of buttons. 12 by default
+const int PUSH_MAKEY[N_PUSHES] = {16,17,18,19}; //* pins of each button connected straight to the Arduino
+
+int makeyCState[N_PUSHES] = {};        // stores the button current value
+int makeyPState[N_PUSHES] = {};        // stores the button previous value
+
 /////////////////////////////////////////////
 // MIDI
 byte midiCh = 1; //* MIDI channel to be used
@@ -88,6 +96,11 @@ void setup()
   #ifdef pin13 // inicializa o pino 13 como uma entrada
     pinMode(BUTTON_ARDUINO_PIN[pin13index], INPUT);
   #endif
+
+  for (int i = 0; i < N_PUSHES; i++)
+  {
+    pinMode(PUSH_MAKEY[i], INPUT);
+  }
 }
 
 /////////////////////////////////////////////
@@ -96,6 +109,28 @@ void loop()
 {
   buttons();
   potentiometers();
+  makey();
+}
+
+void makey()
+{
+  for (int i = 0; i < N_PUSHES; i++)
+  {
+    //Serial.println("Push " + String(PUSH_MAKEY[i]) + ":" + digitalRead(PUSH_MAKEY[i]));
+    makeyCState[i] = digitalRead(PUSH_MAKEY[i]);
+
+    if(makeyCState[i] != makeyPState[i])
+    {
+      //Serial.println("Push " + String(PUSH_MAKEY[i]) + ":" + digitalRead(PUSH_MAKEY[i]));
+      
+      if (makeyCState[i] == LOW)
+        MIDI.sendControlChange(cc + i, 127, midiCh);
+      else
+        MIDI.sendControlChange(cc + i, 0, midiCh);
+        
+      makeyPState[i] = makeyCState[i];
+    }
+  }
 }
 
 /////////////////////////////////////////////
