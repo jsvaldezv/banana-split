@@ -19,8 +19,6 @@
         <FILE id="HJWDn5" name="Distortion.cpp" compile="1" resource="0" file="Source/Distortion.cpp"/>
         <FILE id="dZxzpK" name="Distortion.h" compile="0" resource="0" file="Source/Distortion.h"/>
       </GROUP>
-      <FILE id="kbrU0y" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
-      <FILE id="dc3d8a" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
       <FILE id="onzz7d" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
       <FILE id="p6gAk7" name="SynthVoice.cpp" compile="1" resource="0" file="Source/SynthVoice.cpp"/>
       <FILE id="xKaTO8" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>

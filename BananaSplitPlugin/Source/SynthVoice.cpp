@@ -133,12 +133,12 @@ void SynthVoice::setWaveType(int inType)
     {
         // SIN
         case 0:
-            oscOne.initialise([](float x) { return std::sinf(x); });
+            oscOne.initialise([](float x) { return std::sinf(2.0f * juce::MathConstants<float>::pi * x); });
             break;
         
         // SQUARE
         case 1:
-            oscOne.initialise([](float x) { return x < 0.0f ? -1.0f : 1.0f; });
+            oscOne.initialise([](float x) { return x <= 0.5f ? 1.0f : -1.0f; });
             break;
         
         // TRIANGLE
@@ -148,7 +148,8 @@ void SynthVoice::setWaveType(int inType)
         
         // SAW
         case 3:
-            oscOne.initialise([](float x) { return x / juce::MathConstants<float>::pi * x; });
+            //oscOne.initialise([](float x) { return x / juce::MathConstants<float>::pi * x; });
+            oscOne.initialise([](float x) { return -(2.0f / juce::MathConstants<float>::pi) * atanf(1.0f/tanf(juce::MathConstants<float>::pi * x)); });
             break;
     }
 }

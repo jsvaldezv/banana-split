@@ -11,7 +11,6 @@
 #pragma once
 #include <JuceHeader.h>
 #include "SynthSound.h"
-#include "Oscillator.h"
 
 class SynthVoice : public juce::SynthesiserVoice
 {
