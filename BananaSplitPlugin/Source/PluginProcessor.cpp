@@ -25,7 +25,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout MidiSynthAudioProcessor::cre
 {
     juce::AudioProcessorValueTreeState::ParameterLayout params;
     
-    params.add(std::make_unique<juce::AudioParameterChoice>("Type", "Type", juce::StringArray("Sin", "Square", "Triangle", "Saw"), 0));
+    params.add(std::make_unique<juce::AudioParameterChoice>("Type", "Type", juce::StringArray("Sin", "Square", "Triangle", "Saw"), 1));
     params.add(std::make_unique<juce::AudioParameterInt>("Gain", "Gain", -60.0f, 12.0f, -12.0f));
     
     params.add(std::make_unique<juce::AudioParameterFloat>("Attack", "Attack", 0.1f, 1.0f, 0.1f));

@@ -3,6 +3,8 @@
 #include "PluginProcessor.h"
 #include "KeyboardGUI.h"
 
+#include "Knob_LookAndFeel.h"
+
 class MidiSynthAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
@@ -17,7 +19,12 @@ private:
     
     MidiSynthAudioProcessor& audioProcessor;
     
+    juce::Image backgroundImage { juce::ImageFileFormat::loadFrom(BinaryData::background_png, BinaryData::background_pngSize) };
+    juce::ImageComponent background;
     KeyboardGUI keyboard { audioProcessor.keyboardState };
+    
+    juce::Slider attackSlider;
+    Knob_LookAndFeel lookAndFeel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessorEditor)
 };
