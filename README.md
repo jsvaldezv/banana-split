@@ -8,6 +8,8 @@
 
 Banana Split is a two part project which has a FM Synthesiser plug-in and a MIDI controller built with Arduino.
 
+[Banana Split in action](https://youtu.be/NNCuXe-hHr0)
+
 ## Plug-in
 
 <img width="695" alt="Screen Shot 2022-06-03 at 12 25 56 a m" src="https://user-images.githubusercontent.com/47612276/171791961-6983d553-13ad-4a19-a358-6a7e30c0a584.png">
@@ -29,6 +31,8 @@ It also has a JUCE ADSR and Reverb, Delay, Chorus and Distortion as effects. The
 ## MIDI Controller
 
 ![WhatsApp Image 2022-06-03 at 12 24 42 AM](https://user-images.githubusercontent.com/47612276/171791873-331c2f56-c4bf-4697-a04e-f2e5aea18518.jpeg)
+
+![Banana Split](https://user-images.githubusercontent.com/47612276/171792707-9b7edf9f-116a-4b82-94de-6f2832d3abbc.png)
 
 ### Materials
 
