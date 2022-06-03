@@ -6,15 +6,14 @@
   <MAINGROUP id="zM2Pts" name="BananaSplit">
     <GROUP id="{1BDFBD17-95FD-990A-A094-B4C711D70999}" name="Assets">
       <FILE id="JBDx8O" name="background.png" compile="0" resource="1" file="Assets/background.png"/>
-      <FILE id="JAJVhb" name="knob.png" compile="0" resource="1" file="Assets/knob.png"/>
     </GROUP>
     <GROUP id="{08B0C5FC-0FB8-ABFF-6033-E1B357146237}" name="GUI">
+      <FILE id="A6IlPU" name="ControlsGUI.cpp" compile="1" resource="0" file="Source/ControlsGUI.cpp"/>
+      <FILE id="WPT6Eo" name="ControlsGUI.h" compile="0" resource="0" file="Source/ControlsGUI.h"/>
+      <FILE id="fZDwSw" name="FxGUI.cpp" compile="1" resource="0" file="Source/FxGUI.cpp"/>
+      <FILE id="iEOgtP" name="FxGUI.h" compile="0" resource="0" file="Source/FxGUI.h"/>
       <FILE id="vsA0mF" name="KeyboardGUI.cpp" compile="1" resource="0" file="Source/KeyboardGUI.cpp"/>
       <FILE id="fBVQLH" name="KeyboardGUI.h" compile="0" resource="0" file="Source/KeyboardGUI.h"/>
-      <FILE id="j9sAky" name="Knob_LookAndFeel.cpp" compile="1" resource="0"
-            file="Source/Knob_LookAndFeel.cpp"/>
-      <FILE id="d9VqFN" name="Knob_LookAndFeel.h" compile="0" resource="0"
-            file="Source/Knob_LookAndFeel.h"/>
     </GROUP>
     <GROUP id="{90215668-B6B9-C063-B3C0-8E4AE75C4299}" name="DSP">
       <GROUP id="{08D68834-EED8-8B65-BC01-E913D52098B0}" name="FX">

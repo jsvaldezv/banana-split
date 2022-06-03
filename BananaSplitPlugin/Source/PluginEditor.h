@@ -2,8 +2,8 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "KeyboardGUI.h"
-
-#include "Knob_LookAndFeel.h"
+#include "ControlsGUI.h"
+#include "FxGUI.h"
 
 class MidiSynthAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
@@ -23,8 +23,8 @@ private:
     juce::ImageComponent background;
     KeyboardGUI keyboard { audioProcessor.keyboardState };
     
-    juce::Slider attackSlider;
-    Knob_LookAndFeel lookAndFeel;
+    ControlsGUI controls;
+    FxGUI fx;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessorEditor)
 };
