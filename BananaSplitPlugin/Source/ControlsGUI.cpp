@@ -11,35 +11,42 @@
 #include <JuceHeader.h>
 #include "ControlsGUI.h"
 
-ControlsGUI::ControlsGUI()
+ControlsGUI::ControlsGUI(MidiSynthAudioProcessor& p) : audioProcessor(p)
 {
     gain.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     gain.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
     addAndMakeVisible(gain);
+    gainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvt, "Gain", gain);
     
     attack.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     attack.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
     addAndMakeVisible(attack);
+    attackAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvt, "Attack", attack);
     
     decay.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     decay.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
     addAndMakeVisible(decay);
+    decayAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvt, "Decay", decay);
     
     sustain.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     sustain.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
     addAndMakeVisible(sustain);
+    sustainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvt, "Sustain", sustain);
     
     release.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     release.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
     addAndMakeVisible(release);
+    releaseAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvt, "Release", release);
     
     fmFreq.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     fmFreq.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
     addAndMakeVisible(fmFreq);
+    fmFreqAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvt, "FmFreq", fmFreq);
     
     fmDepth.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     fmDepth.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
     addAndMakeVisible(fmDepth);
+    fmDepthAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvt, "FmDepth", fmDepth);
 }
 
 ControlsGUI::~ControlsGUI(){}

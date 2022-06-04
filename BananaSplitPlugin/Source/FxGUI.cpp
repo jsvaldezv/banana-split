@@ -11,23 +11,28 @@
 #include <JuceHeader.h>
 #include "FxGUI.h"
 
-FxGUI::FxGUI()
+FxGUI::FxGUI(MidiSynthAudioProcessor& p) : audioProcessor(p)
 {
     reverb.setButtonText("Reverb");
     reverb.setClickingTogglesState(true);
     addAndMakeVisible(reverb);
+    reverbAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvt, "Reverb", reverb);
     
     chorus.setButtonText("Chorus");
     chorus.setClickingTogglesState(true);
     addAndMakeVisible(chorus);
+    chorusAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvt, "Chorus", chorus);
+    
     
     delay.setButtonText("Delay");
     delay.setClickingTogglesState(true);
     addAndMakeVisible(delay);
+    delayAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvt, "Delay", delay);
     
     distortion.setButtonText("Distortion");
     distortion.setClickingTogglesState(true);
     addAndMakeVisible(distortion);
+    distorAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvt, "Distortion", distortion);
 }
 
 FxGUI::~FxGUI(){}

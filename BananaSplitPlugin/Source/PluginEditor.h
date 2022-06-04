@@ -20,11 +20,11 @@ private:
     MidiSynthAudioProcessor& audioProcessor;
     
     juce::Image backgroundImage { juce::ImageFileFormat::loadFrom(BinaryData::background_png, BinaryData::background_pngSize) };
-    juce::ImageComponent background;
-    KeyboardGUI keyboard { audioProcessor.keyboardState };
+    juce::ImageComponent        background;
+    KeyboardGUI keyboard        { audioProcessor.keyboardState };
     
-    ControlsGUI controls;
-    FxGUI fx;
+    ControlsGUI controls        { audioProcessor };
+    FxGUI fx                    { audioProcessor };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessorEditor)
 };
