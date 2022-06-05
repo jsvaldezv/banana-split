@@ -4,7 +4,15 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               displaySplashScreen="1">
   <MAINGROUP id="zM2Pts" name="BananaSplit">
+    <GROUP id="{1BDFBD17-95FD-990A-A094-B4C711D70999}" name="Assets">
+      <FILE id="JBDx8O" name="background.png" compile="0" resource="1" file="Assets/background.png"/>
+      <FILE id="GoC722" name="glass.png" compile="0" resource="1" file="Assets/glass.png"/>
+    </GROUP>
     <GROUP id="{08B0C5FC-0FB8-ABFF-6033-E1B357146237}" name="GUI">
+      <FILE id="A6IlPU" name="ControlsGUI.cpp" compile="1" resource="0" file="Source/ControlsGUI.cpp"/>
+      <FILE id="WPT6Eo" name="ControlsGUI.h" compile="0" resource="0" file="Source/ControlsGUI.h"/>
+      <FILE id="fZDwSw" name="FxGUI.cpp" compile="1" resource="0" file="Source/FxGUI.cpp"/>
+      <FILE id="iEOgtP" name="FxGUI.h" compile="0" resource="0" file="Source/FxGUI.h"/>
       <FILE id="vsA0mF" name="KeyboardGUI.cpp" compile="1" resource="0" file="Source/KeyboardGUI.cpp"/>
       <FILE id="fBVQLH" name="KeyboardGUI.h" compile="0" resource="0" file="Source/KeyboardGUI.h"/>
     </GROUP>
@@ -19,8 +27,6 @@
         <FILE id="HJWDn5" name="Distortion.cpp" compile="1" resource="0" file="Source/Distortion.cpp"/>
         <FILE id="dZxzpK" name="Distortion.h" compile="0" resource="0" file="Source/Distortion.h"/>
       </GROUP>
-      <FILE id="kbrU0y" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
-      <FILE id="dc3d8a" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
       <FILE id="onzz7d" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
       <FILE id="p6gAk7" name="SynthVoice.cpp" compile="1" resource="0" file="Source/SynthVoice.cpp"/>
       <FILE id="xKaTO8" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
