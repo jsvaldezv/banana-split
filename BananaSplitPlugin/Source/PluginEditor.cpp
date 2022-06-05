@@ -13,8 +13,9 @@ MidiSynthAudioProcessorEditor::MidiSynthAudioProcessorEditor (MidiSynthAudioProc
     
     addAndMakeVisible(keyboard);
     
-    //glass.setImage(glassImage, juce::RectanglePlacement::stretchToFit);
-    //addAndMakeVisible(glass);
+    glass.setImage(glassImage, juce::RectanglePlacement::stretchToFit);
+    glass.setInterceptsMouseClicks(false, true);
+    addAndMakeVisible(glass);
     
     setSize (700, 400);
 }
@@ -29,5 +30,5 @@ void MidiSynthAudioProcessorEditor::resized()
     controls.   setBounds(84, 62, 386, 169);
     fx.         setBounds(502, 62, 115, 169);
     keyboard.   setBounds(0, 300, 700, 100);
-    glass.      setBounds(0, 0, 700, 300);
+    glass.      setBounds(0, 0, 700, 302);
 }

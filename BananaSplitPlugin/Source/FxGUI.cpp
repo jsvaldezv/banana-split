@@ -15,21 +15,21 @@ FxGUI::FxGUI(MidiSynthAudioProcessor& p) : audioProcessor(p)
 {
     reverb.setButtonText("Reverb");
     reverb.setClickingTogglesState(true);
-    reverb.setColour(juce::TextButton::buttonColourId, juce::Colour(80, 21, 21));
-    reverb.setColour(juce::TextButton::buttonOnColourId, juce::Colour(202, 32, 32));
+    reverb.setColour(juce::TextButton::buttonColourId, juce::Colours::black);
+    reverb.setColour(juce::TextButton::buttonOnColourId, juce::Colours::green);
     addAndMakeVisible(reverb);
     reverbAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvt, "Reverb", reverb);
     
     chorus.setButtonText("Chorus");
     chorus.setClickingTogglesState(true);
-    chorus.setColour(juce::TextButton::buttonColourId, juce::Colours::darkred);
+    chorus.setColour(juce::TextButton::buttonColourId, juce::Colours::black);
     chorus.setColour(juce::TextButton::buttonOnColourId, juce::Colours::red);
     addAndMakeVisible(chorus);
     chorusAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvt, "Chorus", chorus);
     
     delay.setButtonText("Delay");
     delay.setClickingTogglesState(true);
-    delay.setColour(juce::TextButton::buttonColourId, juce::Colour(154, 154, 0));
+    delay.setColour(juce::TextButton::buttonColourId, juce::Colours::black);
     delay.setColour(juce::TextButton::buttonOnColourId, juce::Colours::yellow);
     delay.setColour(juce::TextButton::textColourOnId, juce::Colours::black);
     addAndMakeVisible(delay);
@@ -37,8 +37,8 @@ FxGUI::FxGUI(MidiSynthAudioProcessor& p) : audioProcessor(p)
     
     distortion.setButtonText("Distortion");
     distortion.setClickingTogglesState(true);
-    distortion.setColour(juce::TextButton::buttonColourId, juce::Colour(170, 74, 122));
-    distortion.setColour(juce::TextButton::buttonOnColourId, juce::Colours::hotpink);
+    distortion.setColour(juce::TextButton::buttonColourId, juce::Colours::black);
+    distortion.setColour(juce::TextButton::buttonOnColourId, juce::Colours::orange);
     addAndMakeVisible(distortion);
     distorAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvt, "Distortion", distortion);
 }
