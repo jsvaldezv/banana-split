@@ -131,13 +131,13 @@ void ControlsGUI::resized()
     decayLabel.     setBoundsRelative(0.33f, 0.865f, 0.1f, 0.1f);
     
     sustain.        setBoundsRelative(0.475f, 0.5f - (0.9f/2.0f), 0.1f, 0.8f);
-    sustainLabel.   setBoundsRelative(0.475f, 0.865f, 0.1f, 0.1f);
+    sustainLabel.   setBoundsRelative(0.477f, 0.865f, 0.1f, 0.1f);
     
     release.        setBoundsRelative(0.597f, 0.5f - (0.9f/2.0f), 0.1f, 0.8f);
     releaseLabel.   setBoundsRelative(0.595f, 0.865f, 0.1f, 0.1f);
     
     fmFreq.         setBoundsRelative(0.725f, 0.5f - (0.9f/2.0f), 0.1f, 0.8f);
-    fmFreqLabel.    setBoundsRelative(0.725f, 0.865f, 0.1f, 0.1f);
+    fmFreqLabel.    setBoundsRelative(0.723f, 0.865f, 0.1f, 0.1f);
     
     fmDepth.        setBoundsRelative(0.86f, 0.5f - (0.9f/2.0f), 0.1f, 0.8f);
     fmDepthLabel.   setBoundsRelative(0.86f, 0.865f, 0.1f, 0.1f);
