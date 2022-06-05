@@ -64,8 +64,8 @@ unsigned long timer[N_POTS] = {0}; // Stores the time that has elapsed since the
 const int N_PUSHES = 4; //*  total numbers of buttons. 12 by default
 const int PUSH_MAKEY[N_PUSHES] = {16,17,18,19}; //* pins of each button connected straight to the Arduino
 
-int makeyCState[N_PUSHES] = {};        // stores the button current value
-int makeyPState[N_PUSHES] = {};        // stores the button previous value
+int makeyCState[N_PUSHES] = {0};        // stores the button current value
+int makeyPState[N_PUSHES] = {0};        // stores the button previous value
 
 /////////////////////////////////////////////
 // MIDI
@@ -124,9 +124,9 @@ void makey()
       //Serial.println("Push " + String(PUSH_MAKEY[i]) + ":" + digitalRead(PUSH_MAKEY[i]));
       
       if (makeyCState[i] == LOW)
-        MIDI.sendControlChange(cc + i, 127, midiCh);
+        MIDI.sendControlChange((cc+6) + i, 127, midiCh);
       else
-        MIDI.sendControlChange(cc + i, 0, midiCh);
+        MIDI.sendControlChange((cc+6) + i, 0, midiCh);
         
       makeyPState[i] = makeyCState[i];
     }
