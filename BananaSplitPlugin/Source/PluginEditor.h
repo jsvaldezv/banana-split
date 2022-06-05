@@ -23,6 +23,9 @@ private:
     juce::ImageComponent        background;
     KeyboardGUI keyboard        { audioProcessor.keyboardState };
     
+    juce::Image glassImage { juce::ImageFileFormat::loadFrom(BinaryData::glass_png, BinaryData::glass_pngSize) };
+    juce::ImageComponent        glass;
+    
     ControlsGUI controls        { audioProcessor };
     FxGUI fx                    { audioProcessor };
 
