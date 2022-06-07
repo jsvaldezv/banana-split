@@ -8,7 +8,7 @@
 
 Banana Split is a two part project which has a FM Synthesiser plug-in and a MIDI controller built with Arduino.
 
-[Banana Split in action](https://youtu.be/NNCuXe-hHr0)
+[Banana Split in action](https://youtu.be/ctBEIsoXFOk)
 
 More documentation: https://drive.google.com/drive/folders/1ahm-9sfj2JAlerq6ZdOyQdJHG6sAVqdc?usp=sharing
 
