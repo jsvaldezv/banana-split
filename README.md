@@ -10,7 +10,7 @@ Banana Split is a two part project which has a FM Synthesiser plug-in and a MIDI
 
 [Banana Split in action](https://youtu.be/NNCuXe-hHr0)
 
-More documentation: https://docs.google.com/document/d/1uYoXwxrgnwv4NZCec3gnUjmpxxzRJyiL1A76RhU3jog/edit?usp=sharing
+More documentation: https://drive.google.com/drive/folders/1ahm-9sfj2JAlerq6ZdOyQdJHG6sAVqdc?usp=sharing
 
 ## Plug-in
 
