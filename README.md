@@ -2,22 +2,22 @@
 
 ### By: 
 * Jesús Salvador Valdez Vázquez
-* Brenda Nayeli González Godínez 
 * Ximena Centeno Torres
+* Brenda Nayeli González Godínez 
 * Alejandro Blanco Félix
 
 Banana Split is a two part project which has a FM Synthesiser plug-in and a MIDI controller built with Arduino.
 
-[Banana Split in action](https://youtu.be/ctBEIsoXFOk)
+Banana Split in action: https://youtu.be/ctBEIsoXFOk
 
-More documentation: https://drive.google.com/drive/folders/1ahm-9sfj2JAlerq6ZdOyQdJHG6sAVqdc?usp=sharing
+More documentation: https://drive.google.com/file/d/1M8C55-oJiMauPVbhR72C-Y-AODcRRUhI/view?usp=sharing
 
 ## Plug-in
 
 <img width="701" alt="Screen Shot 2022-06-05 at 11 23 09 p m" src="https://user-images.githubusercontent.com/47612276/172094547-3c1ac1e6-cb79-457b-b486-b33ad393f6f4.png">
 
 Banana Split has a FM synthesiser plug-in which has one oscillator with sine, saw, triangle and square wave where you can control de oscillator gain. 
-It also has a JUCE ADSR and Reverb, Delay, Chorus and Distortion as effects. The Synth was developed with JUCE and C++.
+It also has a JUCE ADSR and Reverb, Delay, Chorus and Distortion as effects. The synth was developed with JUCE and C++.
 
 **Works with MIDI in any DAW which accepts VST, VST3 or AU**
 
@@ -33,8 +33,6 @@ It also has a JUCE ADSR and Reverb, Delay, Chorus and Distortion as effects. The
 ## MIDI Controller
 
 ![WhatsApp Image 2022-06-03 at 12 24 42 AM](https://user-images.githubusercontent.com/47612276/171791873-331c2f56-c4bf-4697-a04e-f2e5aea18518.jpeg)
-
-![Banana Split](https://user-images.githubusercontent.com/47612276/171792707-9b7edf9f-116a-4b82-94de-6f2832d3abbc.png)
 
 ### Materials
 
