@@ -1,14 +1,8 @@
 # Banana Split
 
-### By: 
-* Jesús Salvador Valdez Vázquez
-* Ximena Centeno Torres
-* Brenda Nayeli González Godínez 
-* Alejandro Blanco Félix
-
 Banana Split is a two part project which has a FM Synthesiser plug-in and a MIDI controller built with Arduino.
 
-Banana Split in action: https://youtu.be/ctBEIsoXFOk
+See it in action: https://youtu.be/ctBEIsoXFOk
 
 ## Plug-in
 
@@ -21,7 +15,7 @@ It also has a JUCE ADSR and Reverb, Delay, Chorus and Distortion as effects. The
 
 ### Installation
 
-1. JUCE: You can download JUCE from official website https://juce.com/ and follow the tutorials in order to install or follow my youtube video installation https://www.youtube.com/watch?v=bdYi-UdHd5g&t=449s
+1. JUCE: You can download JUCE from official website https://juce.com/ and follow the tutorials in order to install
 2. Xcode (MacOs): Just download from App Store https://apps.apple.com/us/app/xcode/id497799835?mt=12
 3. Visual Studio (Windows): You can download it from official website https://visualstudio.microsoft.com/es/
 4. Compile
