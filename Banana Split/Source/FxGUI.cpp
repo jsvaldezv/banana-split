@@ -45,10 +45,7 @@ FxGUI::FxGUI(MidiSynthAudioProcessor& p) : audioProcessor(p)
 
 FxGUI::~FxGUI(){}
 
-void FxGUI::paint (juce::Graphics& g)
-{
-    //g.fillAll(juce::Colours::blueviolet);
-}
+void FxGUI::paint (juce::Graphics&) {}
 
 void FxGUI::resized()
 {

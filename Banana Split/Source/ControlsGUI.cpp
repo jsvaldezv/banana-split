@@ -114,10 +114,7 @@ ControlsGUI::ControlsGUI(MidiSynthAudioProcessor& p) : audioProcessor(p)
 
 ControlsGUI::~ControlsGUI(){}
 
-void ControlsGUI::paint (juce::Graphics& g)
-{
-    //g.fillAll(juce::Colours::pink);
-}
+void ControlsGUI::paint (juce::Graphics&) {}
 
 void ControlsGUI::resized()
 {
