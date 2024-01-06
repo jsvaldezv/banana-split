@@ -38,4 +38,3 @@ It also has a JUCE ADSR and Reverb, Delay, Chorus and Distortion as effects. The
 * 6 conductive objects (gummies)
 * Arduino IDE
 * Hairless MIDI
-
