@@ -13,15 +13,6 @@ It also has a JUCE ADSR and Reverb, Delay, Chorus and Distortion as effects. The
 
 **Works with MIDI in any DAW which accepts VST, VST3 or AU**
 
-### Installation
-
-1. JUCE: You can download JUCE from official website https://juce.com/ and follow the tutorials in order to install
-2. Xcode (MacOs): Just download from App Store https://apps.apple.com/us/app/xcode/id497799835?mt=12
-3. Visual Studio (Windows): You can download it from official website https://visualstudio.microsoft.com/es/
-4. Compile
-5. Copy .vst, .vst3 or .component from Builds folder to your plug-ins folder.
-6. Enjoy!
-
 ## MIDI Controller
 
 ![WhatsApp Image 2022-06-03 at 12 24 42 AM](https://user-images.githubusercontent.com/47612276/171791873-331c2f56-c4bf-4697-a04e-f2e5aea18518.jpeg)
