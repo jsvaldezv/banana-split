@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    Distortion.h
-    Created: 23 May 2022 4:19:01pm
+    SynthSound.h
+    Created: 18 May 2022 8:26:29pm
     Author:  Jesús Valdez
 
   ==============================================================================
@@ -11,18 +11,11 @@
 #pragma once
 #include <JuceHeader.h>
 
-class Distortion
+class SynthSound : public juce::SynthesiserSound
 {
 public:
-    
-    Distortion();
-    
-    ~Distortion();
-    
-    void process(juce::AudioBuffer<float>& inBuffer);
-    
-private:
-    
-    float gain {50.0f};
-    
+
+    bool appliesToNote (int /*midiNoteNumber*/) override { return true; }
+
+    bool appliesToChannel (int /*midiChannel*/) override { return true; }
 };
