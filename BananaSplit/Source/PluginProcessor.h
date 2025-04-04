@@ -38,12 +38,14 @@ public:
     void changeProgramName (int index, const juce::String& newName) override;
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-
-    juce::MidiKeyboardState keyboardState;
-
-    juce::AudioProcessorValueTreeState apvts;
+    
+    juce::AudioProcessorValueTreeState& getAPVTS() { return apvts; }
+    
+    juce::MidiKeyboardState& getKeyboardState() { return keyboardState; }
 
 private:
+    
+    juce::AudioProcessorValueTreeState apvts;
 
     juce::Synthesiser synth;
 
@@ -51,6 +53,8 @@ private:
     Delay delay;
     Chorus chorus;
     Distortion distortion;
+    
+    juce::MidiKeyboardState keyboardState;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BananaSplitAudioProcessor)
 };

@@ -64,16 +64,16 @@ void SynthVoice::prepare (double inSampleRate, int inSamplesPerBlock, int inNumC
 
 void SynthVoice::updateParameters (juce::AudioProcessorValueTreeState& inAPVT)
 {
-    auto typeOne = static_cast<int> (inAPVT.getRawParameterValue ("Type")->load());
-    auto gainOneValue = inAPVT.getRawParameterValue ("Gain")->load();
+    auto typeOne = static_cast<int> (inAPVT.getRawParameterValue (BananaSplit::Type)->load());
+    auto gainOneValue = inAPVT.getRawParameterValue (BananaSplit::Gain)->load();
 
-    auto attack = inAPVT.getRawParameterValue ("Attack")->load();
-    auto decay = inAPVT.getRawParameterValue ("Decay")->load();
-    auto sustain = inAPVT.getRawParameterValue ("Sustain")->load();
-    auto release = inAPVT.getRawParameterValue ("Release")->load();
+    auto attack = inAPVT.getRawParameterValue (BananaSplit::Attack)->load();
+    auto decay = inAPVT.getRawParameterValue (BananaSplit::Decay)->load();
+    auto sustain = inAPVT.getRawParameterValue (BananaSplit::Sustain)->load();
+    auto release = inAPVT.getRawParameterValue (BananaSplit::Release)->load();
 
-    auto fmFreq = inAPVT.getRawParameterValue ("FmFreq")->load();
-    auto fmDepthUser = inAPVT.getRawParameterValue ("FmDepth")->load();
+    auto fmFreq = inAPVT.getRawParameterValue (BananaSplit::FmFreq)->load();
+    auto fmDepthUser = inAPVT.getRawParameterValue (BananaSplit::FmDepth)->load();
 
     setWaveType (typeOne);
     adsrParams.attack = attack;
@@ -157,7 +157,7 @@ void SynthVoice::setWaveType (int inType)
         case BananaSplit::OscType::Saw:
             oscOne.initialise ([] (float x)
             {
-                return -(2.0f / juce::MathConstants<float>::pi) * atanf (1.0f / tanf (juce::MathConstants<float>::pi * x));
+                return -(2.0f / juce::MathConstants<float>::pi) * std::atanf (1.0f / std::tanf (juce::MathConstants<float>::pi * x));
             });
             break;
     }

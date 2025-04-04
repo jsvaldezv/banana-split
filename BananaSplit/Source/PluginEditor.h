@@ -25,7 +25,7 @@ private:
     juce::ImageComponent background;
     juce::ImageComponent glass;
 
-    KeyboardComponent keyboard { audioProcessor.keyboardState };
+    KeyboardComponent keyboard { audioProcessor.getKeyboardState() };
     ControlsComponent controls { audioProcessor };
     FxComponent fx { audioProcessor };
 

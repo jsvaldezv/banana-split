@@ -15,7 +15,7 @@ class Reverb
 {
 public:
 
-    void prepare (juce::dsp::ProcessSpec inSpec);
+    void prepare (juce::dsp::ProcessSpec& inSpec);
 
     void process (juce::AudioBuffer<float>& inBuffer);
 

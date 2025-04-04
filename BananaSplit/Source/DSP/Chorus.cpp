@@ -10,7 +10,7 @@
 
 #include "Chorus.h"
 
-void Chorus::prepare (juce::dsp::ProcessSpec inSpec)
+void Chorus::prepare (juce::dsp::ProcessSpec& inSpec)
 {
     chorus.reset();
     chorus.prepare (inSpec);

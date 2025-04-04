@@ -10,6 +10,7 @@
 
 #pragma once
 #include "../Helpers/DSP.h"
+#include "../Helpers/Parameters.h"
 #include "SynthSound.h"
 #include <JuceHeader.h>
 
@@ -38,9 +39,8 @@ public:
 private:
 
     bool isPrepared { false };
-
-    // Osc one
     int mMidiNote { 0 };
+    
     juce::dsp::Oscillator<float> oscOne;
     juce::dsp::Gain<float> gainOne;
 

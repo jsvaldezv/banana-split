@@ -12,21 +12,21 @@
 
 ControlsComponent::ControlsComponent (BananaSplitAudioProcessor& p) : audioProcessor (p)
 {
-    prepareSlider (gain, gainLabel, "Gain", juce::Colour (57, 236, 57), juce::Colours::limegreen, juce::Colour (36, 150, 36));
-    prepareSlider (attack, attackLabel, "Attack", juce::Colours::hotpink, juce::Colours::hotpink, juce::Colours::deeppink);
-    prepareSlider (decay, decayLabel, "Decay", juce::Colour (57, 236, 229), juce::Colour (48, 198, 192), juce::Colour (42, 166, 161));
-    prepareSlider (sustain, sustainLabel, "Sustain", juce::Colours::orange, juce::Colours::orange, juce::Colours::darkorange);
-    prepareSlider (release, releaseLabel, "Release", juce::Colours::red, juce::Colours::red, juce::Colours::darkred);
-    prepareSlider (fmFreq, fmFreqLabel, "FM Freq", juce::Colours::purple, juce::Colours::mediumpurple, juce::Colours::purple);
-    prepareSlider (fmDepth, fmDepthLabel, "FM Depth", juce::Colours::yellow, juce::Colours::lightyellow, juce::Colours::yellow);
+    prepareSlider (gain, gainLabel, BananaSplit::Gain, juce::Colour (57, 236, 57), juce::Colours::limegreen, juce::Colour (36, 150, 36));
+    prepareSlider (attack, attackLabel, BananaSplit::Attack, juce::Colours::hotpink, juce::Colours::hotpink, juce::Colours::deeppink);
+    prepareSlider (decay, decayLabel, BananaSplit::Decay, juce::Colour (57, 236, 229), juce::Colour (48, 198, 192), juce::Colour (42, 166, 161));
+    prepareSlider (sustain, sustainLabel, BananaSplit::Sustain, juce::Colours::orange, juce::Colours::orange, juce::Colours::darkorange);
+    prepareSlider (release, releaseLabel, BananaSplit::Release, juce::Colours::red, juce::Colours::red, juce::Colours::darkred);
+    prepareSlider (fmFreq, fmFreqLabel, BananaSplit::FmFreq, juce::Colours::purple, juce::Colours::mediumpurple, juce::Colours::purple);
+    prepareSlider (fmDepth, fmDepthLabel, BananaSplit::FmDepth, juce::Colours::yellow, juce::Colours::lightyellow, juce::Colours::yellow);
 
-    gainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.apvts, "Gain", gain);
-    attackAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.apvts, "Attack", attack);
-    decayAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.apvts, "Decay", decay);
-    sustainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.apvts, "Sustain", sustain);
-    releaseAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.apvts, "Release", release);
-    fmFreqAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.apvts, "FmFreq", fmFreq);
-    fmDepthAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.apvts, "FmDepth", fmDepth);
+    gainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.getAPVTS(), BananaSplit::Gain, gain);
+    attackAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.getAPVTS(), BananaSplit::Attack, attack);
+    decayAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.getAPVTS(), BananaSplit::Decay, decay);
+    sustainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.getAPVTS(), BananaSplit::Sustain, sustain);
+    releaseAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.getAPVTS(), BananaSplit::Release, release);
+    fmFreqAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.getAPVTS(), BananaSplit::FmFreq, fmFreq);
+    fmDepthAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (audioProcessor.getAPVTS(), BananaSplit::FmDepth, fmDepth);
 }
 
 void ControlsComponent::paint (juce::Graphics&) {}

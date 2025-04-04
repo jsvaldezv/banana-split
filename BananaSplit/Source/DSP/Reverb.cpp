@@ -10,7 +10,7 @@
 
 #include "Reverb.h"
 
-void Reverb::prepare (juce::dsp::ProcessSpec inSpec)
+void Reverb::prepare (juce::dsp::ProcessSpec& inSpec)
 {
     reverb.reset();
     reverb.prepare (inSpec);
@@ -18,7 +18,7 @@ void Reverb::prepare (juce::dsp::ProcessSpec inSpec)
 
     gain.prepare (inSpec);
     gain.reset();
-    gain.setGainDecibels (-12);
+    gain.setGainDecibels (-12.0f);
 }
 
 void Reverb::process (juce::AudioBuffer<float>& inBuffer)

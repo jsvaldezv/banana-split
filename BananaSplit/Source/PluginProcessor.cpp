@@ -4,7 +4,7 @@
 BananaSplitAudioProcessor::BananaSplitAudioProcessor() : AudioProcessor (BusesProperties()
                                                                              .withInput ("Input", juce::AudioChannelSet::stereo(), true)
                                                                              .withOutput ("Output", juce::AudioChannelSet::stereo(), true)),
-                                                         apvts (*this, nullptr, "PARAMETERS", createParameters())
+                                                         apvts (*this, nullptr, "Parameters", BananaSplit::createParameters())
 {
     synth.addSound (new SynthSound());
 
@@ -120,16 +120,16 @@ void BananaSplitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     synth.renderNextBlock (buffer, midiMessages, 0, buffer.getNumSamples());
 
     // Fx
-    if (static_cast<bool> (apvts.getRawParameterValue ("Reverb")->load()))
+    if (static_cast<bool> (apvts.getRawParameterValue (BananaSplit::Reverb)->load()))
         reverb.process (buffer);
 
-    if (static_cast<bool> (apvts.getRawParameterValue ("Chorus")->load()))
+    if (static_cast<bool> (apvts.getRawParameterValue (BananaSplit::Chorus)->load()))
         chorus.process (buffer);
 
-    if (static_cast<bool> (apvts.getRawParameterValue ("Delay")->load()))
+    if (static_cast<bool> (apvts.getRawParameterValue (BananaSplit::Delay)->load()))
         distortion.process (buffer);
 
-    if (static_cast<bool> (apvts.getRawParameterValue ("Distortion")->load()))
+    if (static_cast<bool> (apvts.getRawParameterValue (BananaSplit::Distortion)->load()))
         delay.process (buffer);
 }
 

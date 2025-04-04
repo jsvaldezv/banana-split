@@ -23,9 +23,9 @@ public:
     void prepareSlider (juce::Slider&,
                         juce::Label&,
                         juce::String,
-                        juce::Colour thumbColour,
-                        juce::Colour backgroundColour,
-                        juce::Colour trackColour);
+                        juce::Colour,
+                        juce::Colour,
+                        juce::Colour);
 
 private:
 

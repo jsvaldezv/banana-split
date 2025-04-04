@@ -12,17 +12,17 @@
 
 FxComponent::FxComponent (BananaSplitAudioProcessor& p) : audioProcessor (p)
 {
-    prepareSlider (reverb, "Reverb", juce::Colours::black, juce::Colours::green);
-    prepareSlider (chorus, "Chorus", juce::Colours::black, juce::Colours::red);
-    prepareSlider (delay, "Delay", juce::Colours::black, juce::Colours::yellow);
-    prepareSlider (distortion, "Distortion", juce::Colours::black, juce::Colours::orange);
+    prepareSlider (reverb, BananaSplit::Reverb, juce::Colours::black, juce::Colours::green);
+    prepareSlider (chorus, BananaSplit::Chorus, juce::Colours::black, juce::Colours::red);
+    prepareSlider (delay, BananaSplit::Delay, juce::Colours::black, juce::Colours::yellow);
+    prepareSlider (distortion, BananaSplit::Distortion, juce::Colours::black, juce::Colours::orange);
 
     delay.setColour (juce::TextButton::textColourOnId, juce::Colours::black);
 
-    reverbAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment> (audioProcessor.apvts, "Reverb", reverb);
-    chorusAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment> (audioProcessor.apvts, "Chorus", chorus);
-    delayAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment> (audioProcessor.apvts, "Delay", delay);
-    distorAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment> (audioProcessor.apvts, "Distortion", distortion);
+    reverbAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment> (audioProcessor.getAPVTS(), BananaSplit::Reverb, reverb);
+    chorusAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment> (audioProcessor.getAPVTS(), BananaSplit::Chorus, chorus);
+    delayAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment> (audioProcessor.getAPVTS(), BananaSplit::Delay, delay);
+    distorAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment> (audioProcessor.getAPVTS(), BananaSplit::Distortion, distortion);
 }
 
 void FxComponent::paint (juce::Graphics&) {}
