@@ -127,10 +127,10 @@ void BananaSplitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
         chorus.process (buffer);
 
     if (static_cast<bool> (apvts.getRawParameterValue (BananaSplit::Delay)->load()))
-        distortion.process (buffer);
+        delay.process (buffer);
 
     if (static_cast<bool> (apvts.getRawParameterValue (BananaSplit::Distortion)->load()))
-        delay.process (buffer);
+        distortion.process (buffer);
 }
 
 bool BananaSplitAudioProcessor::hasEditor() const { return true; }
