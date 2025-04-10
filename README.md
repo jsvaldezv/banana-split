@@ -1,23 +1,28 @@
-# Banana Split
+# 🍌 Banana Split
 
-Banana Split is a two part project which has a FM Synthesiser plug-in and a MIDI controller built with Arduino.
+Banana Split is a two-part project consisting of:
 
-See it in action: https://youtu.be/ctBEIsoXFOk
+1. A FM Synthesizer VST/AU plug-in, developed in JUCE and C++
+2. A custom-built MIDI controller, using Arduino and Makey Makey with conductive gummies
 
-## Plug-in
+## 🎹 FM Synthesizer Plug-in
 
 <img width="701" alt="Screen Shot 2022-06-05 at 11 23 09 p m" src="https://user-images.githubusercontent.com/47612276/172094547-3c1ac1e6-cb79-457b-b486-b33ad393f6f4.png">
 
-Banana Split has a FM synthesiser plug-in which has one oscillator with sine, saw, triangle and square wave where you can control de oscillator gain. 
-It also has a JUCE ADSR and Reverb, Delay, Chorus and Distortion as effects. The synth was developed with JUCE and C++.
+The synthesizer is an FM-based virtual instrument built using the JUCE framework and C++. Its features include:
 
-**Works with MIDI in any DAW which accepts VST, VST3 or AU**
+1. One oscillator with selectable waveforms: Sine, Saw, Triangle, and Square
+2. Gain control for the oscillator
+3. ADSR envelope (Attack, Decay, Sustain, Release)
+4. Built-in audio effects: Reverb, Delay, Chorus, Distortion
 
-## MIDI Controller
+## 🎛️ DIY MIDI Controller
 
 ![WhatsApp Image 2022-06-03 at 12 24 42 AM](https://user-images.githubusercontent.com/47612276/171791873-331c2f56-c4bf-4697-a04e-f2e5aea18518.jpeg)
 
-### Materials
+The MIDI controller was built using Arduino and Makey Makey, allowing for a playful and tactile interaction using conductive candies.
+
+### Components Used:
 
 * Arduino MEGA
 * Protoboard
@@ -29,3 +34,5 @@ It also has a JUCE ADSR and Reverb, Delay, Chorus and Distortion as effects. The
 * 6 conductive objects (gummies)
 * Arduino IDE
 * Hairless MIDI
+
+The Arduino sends MIDI messages via serial using Hairless MIDI, enabling real-time control of the synthesizer parameters.
