@@ -14,19 +14,15 @@
 class Reverb
 {
 public:
-    
-    Reverb();
-    ~Reverb();
-    
-    void prepare(juce::dsp::ProcessSpec inSpec);
-    
-    void process(juce::AudioBuffer<float> inBuffer);
-    
+
+    void prepare (juce::dsp::ProcessSpec& inSpec);
+
+    void process (juce::AudioBuffer<float>& inBuffer);
+
 private:
-    
+
     juce::dsp::Reverb::Parameters revParams;
     juce::dsp::Reverb reverb;
-    
+
     juce::dsp::Gain<float> gain;
-    
 };

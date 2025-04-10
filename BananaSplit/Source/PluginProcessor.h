@@ -1,26 +1,28 @@
 #pragma once
+#include "DSP/Chorus.h"
+#include "DSP/Delay.h"
+#include "DSP/Distortion.h"
+#include "DSP/Reverb.h"
+#include "Helpers/DSP.h"
+#include "Helpers/Parameters.h"
+#include "Synth/SynthSound.h"
+#include "Synth/SynthVoice.h"
 #include <JuceHeader.h>
-#include "Helpers_DSP.h"
-#include "SynthSound.h"
-#include "SynthVoice.h"
 
-#include "Chorus.h"
-#include "Delay.h"
-#include "Distortion.h"
-#include "Reverb.h"
-
-class MidiSynthAudioProcessor  : public juce::AudioProcessor
+class BananaSplitAudioProcessor : public juce::AudioProcessor
 {
 public:
-    
-    MidiSynthAudioProcessor();
-    ~MidiSynthAudioProcessor() override;
+
+    BananaSplitAudioProcessor();
+    ~BananaSplitAudioProcessor() override;
 
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
-   #ifndef JucePlugin_PreferredChannelConfigurations
+
+#ifndef JucePlugin_PreferredChannelConfigurations
     bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
-   #endif
+#endif
+
     void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
     juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
@@ -37,19 +39,22 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    juce::AudioProcessorValueTreeState apvt;
-    juce::AudioProcessorValueTreeState::ParameterLayout createAPVT();
+    juce::AudioProcessorValueTreeState& getAPVTS() { return apvts; }
     
-    juce::MidiKeyboardState keyboardState;
+    juce::MidiKeyboardState& getKeyboardState() { return keyboardState; }
 
 private:
     
+    juce::AudioProcessorValueTreeState apvts;
+
     juce::Synthesiser synth;
-    
+
     Reverb reverb;
     Delay delay;
     Chorus chorus;
     Distortion distortion;
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiSynthAudioProcessor)
+    juce::MidiKeyboardState keyboardState;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BananaSplitAudioProcessor)
 };

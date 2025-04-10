@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="uKf8N1" name="Banana Split" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
-              version="1.0.0" companyName="jsvaldezv" companyCopyright="jsvaldezv"
+              version="1.1.0" companyName="jsvaldezv" companyCopyright="jsvaldezv"
               pluginFormats="buildAU,buildStandalone,buildVST3">
   <MAINGROUP id="zM2Pts" name="Banana Split">
     <GROUP id="{2B5E0596-EB75-596E-31AA-682C747968F6}" name="Source">
@@ -14,31 +14,36 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="RNjP3h" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
-    <GROUP id="{08B0C5FC-0FB8-ABFF-6033-E1B357146237}" name="GUI">
-      <FILE id="A6IlPU" name="ControlsGUI.cpp" compile="1" resource="0" file="Source/ControlsGUI.cpp"/>
-      <FILE id="WPT6Eo" name="ControlsGUI.h" compile="0" resource="0" file="Source/ControlsGUI.h"/>
-      <FILE id="fZDwSw" name="FxGUI.cpp" compile="1" resource="0" file="Source/FxGUI.cpp"/>
-      <FILE id="iEOgtP" name="FxGUI.h" compile="0" resource="0" file="Source/FxGUI.h"/>
-      <FILE id="vsA0mF" name="KeyboardGUI.cpp" compile="1" resource="0" file="Source/KeyboardGUI.cpp"/>
-      <FILE id="fBVQLH" name="KeyboardGUI.h" compile="0" resource="0" file="Source/KeyboardGUI.h"/>
+    <GROUP id="{DF75EA46-60F3-30F0-555D-A1C3A10E6144}" name="Synth">
+      <FILE id="P5b4ss" name="SynthSound.h" compile="0" resource="0" file="Source/Synth/SynthSound.h"/>
+      <FILE id="G20fdD" name="SynthVoice.cpp" compile="1" resource="0" file="Source/Synth/SynthVoice.cpp"/>
+      <FILE id="HeZFMP" name="SynthVoice.h" compile="0" resource="0" file="Source/Synth/SynthVoice.h"/>
     </GROUP>
-    <GROUP id="{90215668-B6B9-C063-B3C0-8E4AE75C4299}" name="DSP">
-      <GROUP id="{08D68834-EED8-8B65-BC01-E913D52098B0}" name="FX">
-        <FILE id="YPHz9V" name="Chorus.cpp" compile="1" resource="0" file="Source/Chorus.cpp"/>
-        <FILE id="UY5ydz" name="Chorus.h" compile="0" resource="0" file="Source/Chorus.h"/>
-        <FILE id="vEjHwU" name="Reverb.cpp" compile="1" resource="0" file="Source/Reverb.cpp"/>
-        <FILE id="LWroSC" name="Reverb.h" compile="0" resource="0" file="Source/Reverb.h"/>
-        <FILE id="fHsk8k" name="Delay.cpp" compile="1" resource="0" file="Source/Delay.cpp"/>
-        <FILE id="Zbpg6L" name="Delay.h" compile="0" resource="0" file="Source/Delay.h"/>
-        <FILE id="HJWDn5" name="Distortion.cpp" compile="1" resource="0" file="Source/Distortion.cpp"/>
-        <FILE id="dZxzpK" name="Distortion.h" compile="0" resource="0" file="Source/Distortion.h"/>
-      </GROUP>
-      <FILE id="onzz7d" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
-      <FILE id="p6gAk7" name="SynthVoice.cpp" compile="1" resource="0" file="Source/SynthVoice.cpp"/>
-      <FILE id="xKaTO8" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
+    <GROUP id="{B648BCDE-18C5-CE34-56C0-DDBC20A6C2D0}" name="DSP">
+      <FILE id="MFzlf3" name="Chorus.cpp" compile="1" resource="0" file="Source/DSP/Chorus.cpp"/>
+      <FILE id="fozl8V" name="Chorus.h" compile="0" resource="0" file="Source/DSP/Chorus.h"/>
+      <FILE id="HGfVIy" name="Delay.cpp" compile="1" resource="0" file="Source/DSP/Delay.cpp"/>
+      <FILE id="lnr3hp" name="Delay.h" compile="0" resource="0" file="Source/DSP/Delay.h"/>
+      <FILE id="gckkw1" name="Distortion.cpp" compile="1" resource="0" file="Source/DSP/Distortion.cpp"/>
+      <FILE id="Ub8b4Q" name="Distortion.h" compile="0" resource="0" file="Source/DSP/Distortion.h"/>
+      <FILE id="fI3FeD" name="Reverb.cpp" compile="1" resource="0" file="Source/DSP/Reverb.cpp"/>
+      <FILE id="ZOxule" name="Reverb.h" compile="0" resource="0" file="Source/DSP/Reverb.h"/>
     </GROUP>
-    <GROUP id="{4F622FD6-0B66-3348-8555-153B9CCC1FB8}" name="Helpers">
-      <FILE id="cWXxX3" name="Helpers_DSP.h" compile="0" resource="0" file="Source/Helpers_DSP.h"/>
+    <GROUP id="{3D464DE4-1FA2-EACA-58C1-A3B68330CB4B}" name="Components">
+      <FILE id="QvKnJp" name="ControlsComponent.cpp" compile="1" resource="0"
+            file="Source/Components/ControlsComponent.cpp"/>
+      <FILE id="kj5lue" name="ControlsComponent.h" compile="0" resource="0"
+            file="Source/Components/ControlsComponent.h"/>
+      <FILE id="YzlcSx" name="FxComponent.cpp" compile="1" resource="0" file="Source/Components/FxComponent.cpp"/>
+      <FILE id="S7n2Fz" name="FxComponent.h" compile="0" resource="0" file="Source/Components/FxComponent.h"/>
+      <FILE id="Zc5Z6J" name="KeyboardComponent.cpp" compile="1" resource="0"
+            file="Source/Components/KeyboardComponent.cpp"/>
+      <FILE id="qwuwBH" name="KeyboardComponent.h" compile="0" resource="0"
+            file="Source/Components/KeyboardComponent.h"/>
+    </GROUP>
+    <GROUP id="{C6B176CA-498D-7BAE-22C4-C61001B36FFA}" name="Helpers">
+      <FILE id="kWvUnZ" name="DSP.h" compile="0" resource="0" file="Source/Helpers/DSP.h"/>
+      <FILE id="uDorH9" name="Parameters.h" compile="0" resource="0" file="Source/Helpers/Parameters.h"/>
     </GROUP>
     <GROUP id="{1BDFBD17-95FD-990A-A094-B4C711D70999}" name="Assets">
       <FILE id="JBDx8O" name="background.png" compile="0" resource="1" file="Assets/background.png"/>

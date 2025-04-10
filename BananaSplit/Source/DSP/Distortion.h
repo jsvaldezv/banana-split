@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    Chorus.h
-    Created: 23 May 2022 4:18:46pm
+    Distortion.h
+    Created: 23 May 2022 4:19:01pm
     Author:  Jesús Valdez
 
   ==============================================================================
@@ -11,19 +11,13 @@
 #pragma once
 #include <JuceHeader.h>
 
-class Chorus
+class Distortion
 {
 public:
-    
-    Chorus();
-    ~Chorus();
-    
-    void prepare(juce::dsp::ProcessSpec inSpec);
-    
-    void process(juce::AudioBuffer<float> inBuffer);
-    
+
+    void process (juce::AudioBuffer<float>& inBuffer);
+
 private:
-    
-    juce::dsp::Chorus<float> chorus;
-    
+
+    float gain { 50.0f };
 };
