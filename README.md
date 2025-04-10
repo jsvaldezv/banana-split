@@ -7,7 +7,7 @@ Banana Split is a two-part project consisting of:
 
 ## 🎹 FM Synthesizer Plug-in
 
-<img width="701" alt="Screen Shot 2022-06-05 at 11 23 09 p m" src="https://user-images.githubusercontent.com/47612276/172094547-3c1ac1e6-cb79-457b-b486-b33ad393f6f4.png">
+https://github.com/user-attachments/assets/0cf86cee-c705-47e7-96d9-993b0c8a8172
 
 The synthesizer is an FM-based virtual instrument built using the JUCE framework and C++. Its features include:
 
