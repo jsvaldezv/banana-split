@@ -1,4 +1,4 @@
-# 🍌 Banana Split
+# 🍌 Banana Split Audio Plugin
 
 Banana Split is a two-part project consisting of:
 
